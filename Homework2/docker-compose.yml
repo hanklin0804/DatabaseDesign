@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: mitlab
+      MYSQL_DATABASE: test_database
+      MYSQL_USER: hanklin
+      MYSQL_PASSWORD: mitlab
+    volumes:
+      - ./db_data:/var/lib/mysql
+      - ./db_init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+  web:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "80:80"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: hanklin
+      PMA_PASSWORD: mitlab
+    ports:
+      - "8080:80"
+    depends_on:
+      - db

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+</head>
+<body>
+    <h1>User Management</h1>
+
+    <h2>Insert</h2>
+    <form action="index.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        <input type="submit" name="insert" value="Insert">
+    </form>
+
+    <h2>Delete</h2>
+    <form action="index.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <input type="submit" name="delete" value="Delete">
+    </form>
+
+    <h2>Update</h2>
+    <form action="index.php" method="post">
+        <label for="old_name">Old Name:</label>
+        <input type="text" name="old_name" id="old_name" required>
+        <label for="new_name">New Name:</label>
+        <input type="text" name="new_name" id="new_name" required>
+        <label for="update_email">Email:</label>
+        <input type="email" name="update_email" id="update_email" required>
+        <input type="submit" name="update" value="Update">
+    </form>
+</body>
+</html>
