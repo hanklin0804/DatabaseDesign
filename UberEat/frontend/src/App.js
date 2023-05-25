@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
+import HomeUser from './components/HomeUser/HomeUser';
+import HomeRestaurant from './components/HomeRestaurant/HomeRestaurant';
+import EditRestaurant from './components/EditRestaurant/EditRestaurant';
+import ManageMenuItems from './components/ManageMenuItems/ManageMenuItems';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import RoleSelection from './components/RoleSelection/RoleSelection';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/home-user" element={<HomeUser />} />
+        <Route path="/home-restaurant" element={<HomeRestaurant />} />
+        <Route path="/edit-restaurant" element={<EditRestaurant />} />
+        <Route path="/manage-menu-items" element={<ManageMenuItems />} />
+        <Route path="/role-selector" element={<RoleSelection />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
