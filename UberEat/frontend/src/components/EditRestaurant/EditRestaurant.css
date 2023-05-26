@@ -78,7 +78,7 @@
   .navbar {
     display: flex;
     flex-direction: row;
-    justify-content:start;
+    justify-content:flex-start;
     align-items: center;
     background: linear-gradient(to bottom, #305bb8,  #598fdf); /* 使用漸層背景色 */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* 添加陰影效果 */

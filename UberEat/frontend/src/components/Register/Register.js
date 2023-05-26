@@ -1,10 +1,10 @@
-// src/components/Register/Register.js
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { register } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 function Register() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -12,20 +12,10 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    const user = await register({ 
-      first_name: firstName, 
-      last_name: lastName, 
-      email, 
-      password, 
-      phone_number: phoneNumber, 
-      delivery_address: deliveryAddress 
-    });
-
-    console.log(user);
-    // handle the response here. For example, save the user and the token in the state
+    alert('User registered!');
+    navigate('/');
   };
 
   return (

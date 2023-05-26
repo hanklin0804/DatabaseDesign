@@ -1,8 +1,7 @@
-// src/components/Login/Login.js
+// src/components/Login.js
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../services/api';
 import './Login.css';
 
 function Login() {
@@ -10,11 +9,11 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    const user = await login(email, password);
-    console.log(user);
+    // Assume all logins are successful for demo purposes
+    console.log(`User ${email} logged in!`);
 
     // navigate to role selector page after successful login
     navigate('/role-selector');

@@ -8,6 +8,15 @@ import ManageMenuItems from './components/ManageMenuItems/ManageMenuItems';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import RoleSelection from './components/RoleSelection/RoleSelection';
+import UserCart from './components/UserCart/UserCart';
+import UserCheckout from './components/UserCheckout/UserCheckout';
+import UserMenuDetail from './components/UserMenuDetail/UserMenuDetail';
+import UserOrderConfirmation from './components/UserOrderConfirmation/UserOrderConfirmation';
+import UserOrderHistory from './components/UserOrderHistory/UserOrderHistory';
+import UserOrderStatus from './components/UserOrderStatus/UserOrderStatus';
+import UserRatingsAndReviews from './components/UserRatingsAndReviews/UserRatingsAndReviews';
+import UserRestaurantDetail from './components/UserRestaurantDetail/UserRestaurantDetail';
+
 
 function App() {
   return (
@@ -20,6 +29,14 @@ function App() {
         <Route path="/edit-restaurant" element={<EditRestaurant />} />
         <Route path="/manage-menu-items" element={<ManageMenuItems />} />
         <Route path="/role-selector" element={<RoleSelection />} />
+        <Route path="/user-cart" element={<UserCart />} />
+        <Route path="/user-checkout" element={<UserCheckout />} />
+        <Route path="/user-menu-detail" element={<UserMenuDetail />} />
+        <Route path="/user-order-confirmation" element={<UserOrderConfirmation />} />
+        <Route path="/user-order-history" element={<UserOrderHistory />} />
+        <Route path="/user-order-status" element={<UserOrderStatus />} />
+        <Route path="/user-ratings-and-reviews" element={<UserRatingsAndReviews />} />
+        <Route path="/user-restaurant-detail" element={<UserRestaurantDetail />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

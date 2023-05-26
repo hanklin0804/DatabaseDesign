@@ -1,42 +1,18 @@
-// src/components/EditRestaurant/EditRestaurant.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Form, Button, Navbar, Nav, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { editRestaurant, getRestaurant } from '../../services/api';
 import './EditRestaurant.css';
 
 function EditRestaurant() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [name, setName] = useState("Example Restaurant");
+  const [description, setDescription] = useState("This is an example description.");
+  const [address, setAddress] = useState("123 Example Street");
+  const [phoneNumber, setPhoneNumber] = useState("123-456-7890");
 
-  // Assuming the restaurant ID is 1, but you should replace this with the actual restaurant ID
-  const restaurantId = 1;
-
-  useEffect(() => {
-    const fetchRestaurant = async () => {
-      const restaurant = await getRestaurant(restaurantId);
-      setName(restaurant.name);
-      setDescription(restaurant.description);
-      setAddress(restaurant.address);
-      setPhoneNumber(restaurant.phone_number);
-      setLoading(false);
-    }
-    fetchRestaurant();
-  }, []);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { name, description, address, phone_number: phoneNumber };
-    await editRestaurant(restaurantId, data);
-    navigate('/home-restaurant');
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
+    alert(`Restaurant ${name} updated!`);
   }
 
   return (
@@ -68,7 +44,7 @@ function EditRestaurant() {
                 <Card.Body>
                 <Form.Group>
                     <Form.Label>New Name: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
+                    <Form.Control type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 </Form.Group>
                 </Card.Body>
             </Card>
@@ -77,7 +53,7 @@ function EditRestaurant() {
                 <Card.Body>
                 <Form.Group>
                     <Form.Label>New Description: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => setDescription(e.target.value)} />
+                    <Form.Control type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </Form.Group>
                 </Card.Body>
             </Card>
@@ -86,7 +62,7 @@ function EditRestaurant() {
                 <Card.Body>
                 <Form.Group>
                     <Form.Label>New Address: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => setAddress(e.target.value)} />
+                    <Form.Control type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
                 </Form.Group>
                 </Card.Body>
             </Card>
@@ -95,14 +71,13 @@ function EditRestaurant() {
                 <Card.Body>
                 <Form.Group>
                     <Form.Label>New Phone Number: </Form.Label>
-                    <Form.Control type="text" onChange={(e) => setPhoneNumber(e.target.value)} />
+                    <Form.Control type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                 </Form.Group>
                 </Card.Body>
             </Card>
 
             <Button variant="primary" type="submit" className="btn-submit">Submit</Button>
-            </Form>
-
+        </Form>
       </Container>
     </div>
   );

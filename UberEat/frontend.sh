@@ -15,6 +15,12 @@ npm install react-bootstrap
 npm install bootstrap 
 npm install axios
 
+# 模擬API用
+npm install -g json-server 
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
+
 
 # 建立目錄結構
 mkdir src/components
@@ -29,6 +35,14 @@ mkdir src/components/HomeRestaurant
 mkdir src/components/RoleSelection 
 mkdir src/components/EditRestaurant  
 mkdir src/components/ManageMenuItems   
+mkdir src/components/UserCart
+mkdir src/components/UserCheckout
+mkdir src/components/UserMenuDetail
+mkdir src/components/UserOrderConfirmation
+mkdir src/components/UserOrderHistory
+mkdir src/components/UserOrderStatus
+mkdir src/components/UserRatingsAndReviews
+mkdir src/components/UserRestaurantDetail
 
 touch src/components/Home/Home.js
 touch src/components/Home/Home.css
@@ -46,4 +60,21 @@ touch src/components/Register/Register.js
 touch src/components/Register/Register.css
 touch src/components/RoleSelection/RoleSelection.js
 touch src/components/RoleSelection/RoleSelection.css
+touch src/components/UserCart/UserCart.js
+touch src/components/UserCart/UserCart.css
+touch src/components/UserCheckout/UserCheckout.js
+touch src/components/UserCheckout/UserCheckout.css
+touch src/components/UserMenuDetail/UserMenuDetail.js
+touch src/components/UserMenuDetail/UserMenuDetail.css
+touch src/components/UserOrderConfirmation/UserOrderConfirmation.js
+touch src/components/UserOrderConfirmation/UserOrderConfirmation.css
+touch src/components/UserOrderHistory/UserOrderHistory.js
+touch src/components/UserOrderHistory/UserOrderHistory.css
+touch src/components/UserOrderStatus/UserOrderStatus.js
+touch src/components/UserOrderStatus/UserOrderStatus.css
+touch src/components/UserRatingsAndReviews/UserRatingsAndReviews.js
+touch src/components/UserRatingsAndReviews/UserRatingsAndReviews.css
+touch src/components/UserRestaurantDetail/UserRestaurantDetail.js
+touch src/components/UserRestaurantDetail/UserRestaurantDetail.css
+
 touch src/services/api.js
