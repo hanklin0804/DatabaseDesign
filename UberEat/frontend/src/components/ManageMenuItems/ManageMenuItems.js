@@ -1,7 +1,7 @@
 // src/components/ManageMenuItems/ManageMenuItems.js
 import React, { useState } from 'react';
 import { Container, Button, Card, Navbar, Nav, Form, Row, Col } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './ManageMenuItems.css';
 
 function ManageMenuItems() {

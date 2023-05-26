@@ -1,10 +1,76 @@
+ /* src/components/HomeRestaurant/HomeRestaurant.css */
 .home-user-container {
-    margin-top: 30px;
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: center;
+    background-image: url("../../assets/user_background.jpg");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
 }
 
 .restaurant-card {
-    margin-bottom: 20px;
+    width: 210px; /* 设置卡片的宽度 */
+    height: 350px; /* 设置卡片的高度 */
+    padding-bottom: 30px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s; /* Animation */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.text-center{
+    padding-bottom: 10px;
+    font-size: 30px;
+}
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content:  space-evenly;
+    flex-wrap: wrap;
+    padding-bottom: 90px;
+}
+.restaurant-card .card-img-top {
+    flex: 0.5;
+    max-height: 200px;
+    object-fit: cover; /* This will make the image cover the whole height of the card */
+}
+
+
+.restaurant-card .card-title {
+    font-size: larger; /* Adjust as needed */
+    font-weight: bold;
+}
+
+.restaurant-card .card-body {
+    flex: 0.5;
+    padding: 15px; /* Card body padding */
+    background-color: #f8f9fa; /* Card body background color */
+    height: 70px; /* Set a fixed height */
+    position: relative; /* Relative position for the 'read more' link */
+    overflow: hidden; /* Hide the overflow */
+}
+
+.restaurant-card .card-text {
+    font-size: small; /* Adjust as needed */
+    color: #6c757d;
+    overflow: hidden; /* Hide the overflow */
+    text-overflow: ellipsis; /* Add ellipsis (...) when the text overflows */
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Number of lines to display before truncating */
+    -webkit-box-orient: vertical;
+    
+}
+
+.restaurant-card:hover {
+    transform: scale(1.05); /* Zoom in effect on hover */
 }
 
 .navbar {
@@ -18,7 +84,7 @@
 }
 
 .menu-items-link {
-    margin-left: 30px;
+    padding-left: 30px;
     text-decoration: none;
     font-size: 1.2em;
 }
@@ -39,4 +105,23 @@
 
 .nav-link:hover {
     color: #cccccc;
+}
+
+.search-bar {
+    width: 50%;
+    height: 30px;
+    padding-bottom: 30px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+  }
+  
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 60px;
 }
