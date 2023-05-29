@@ -46,6 +46,7 @@
 .new-item-form label {
     font-size: 18px;
     font-weight: bold;
+    color: rgba(0, 0, 0, 0.836);
 }
 
 .new-item-form input {
@@ -86,8 +87,9 @@
     transition: 0.3s; /* Add transition for hover effect */
 }
 
+
 .menu-item-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Increase shadow when hover */
+    box-shadow: 4px 9px 16px 0 rgba(0, 0, 0, 0.3); /* Increase shadow when hover */
 }
 
 .menu-item-card .edit-form {

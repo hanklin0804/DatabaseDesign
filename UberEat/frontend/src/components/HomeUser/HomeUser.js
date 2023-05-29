@@ -1,4 +1,4 @@
-// src/components/HomeRestaurant/HomeUser.js
+// src/components/HomeUser/HomeUser.js
 import React, { useState, useEffect, useMemo } from 'react';
 import { Container, Card, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';

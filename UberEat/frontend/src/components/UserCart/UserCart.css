@@ -1,0 +1,91 @@
+/* src/components/UserCart/UserCart.css */
+.user-cart-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    background-image: url("../../assets/user_background.jpg");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+}
+
+.user-cart-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    max-width: 900px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.user-cart-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 2em;
+}
+
+.user-cart-alert {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.user-cart-table {
+    width: 100%;
+}
+
+.user-cart-table th {
+    background-color: #f5f5f5;
+    color: #333;
+    font-weight: 500;
+}
+
+.user-cart-table td {
+    border-color: #dee2e6;
+    color: #666;
+    padding: 10px 10px;
+}
+
+.user-cart-table .form-control {
+    width: 80px;
+}
+
+.user-cart-quantity-input-td {
+    display: flex;
+    justify-content: center;
+}
+
+.user-cart-remove-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.user-cart-checkout-title {
+    margin-top: 40px;
+    font-size: larger;
+}
+
+.user-cart-checkout-button {
+    float: right;
+    margin-top: 20px;
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+}
+
+.user-cart-checkout-button:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

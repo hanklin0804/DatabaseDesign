@@ -3,24 +3,16 @@ import React from 'react';
 import { Container, Button, Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 import './HomeRestaurant.css';
+import RestautantNavbar from '../RestautantNavbar/RestautantNavbar';
 
 function HomeRestaurant() {
   const navigate = useNavigate();
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand onClick={() => navigate('/home-restaurant')}>Home</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link onClick={() => navigate('/edit-restaurant')} className="menu-items-link">Edit_Restaurant</Nav.Link>
-          <Nav.Link onClick={() => navigate('/manage-menu-items')} className="menu-items-link">Menu_Items</Nav.Link>
-        </Nav>
-        <Nav className="ml-auto">
-          <Nav.Link onClick={() => navigate('/')} className="menu-items-link">Logout</Nav.Link>
-        </Nav>
-      </Navbar>
-
-      <Container className="edit-restaurant-container edit-restaurant-background">
+      <RestautantNavbar />
+      <div className='edit-restaurant-background'>
+      <Container className="edit-restaurant-container ">
       <div className="edit-restaurant-content">
         <h1>Welcome, Restaurant Managment!</h1>
         <p>You can edit your restaurant detail, and manage your menu. </p>
@@ -42,6 +34,7 @@ function HomeRestaurant() {
         </Row>
       </div>
     </Container>
+    </div>
     </div>
   );
 }

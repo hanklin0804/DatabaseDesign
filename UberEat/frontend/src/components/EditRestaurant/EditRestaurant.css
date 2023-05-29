@@ -1,134 +1,106 @@
 /* src/components/EditRestaurant/EditRestaurant.css */
-
-/* 使用背景圖片並設定背景大小 */
-.edit-restaurant-background {
-    background: url("../../assets/restaurant-background.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 100vh;
-  }
-  
-  /* 設定內容容器的樣式 */
-  .edit-restaurant-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .edit-restaurant-container h2 {
-    color: black;
-    text-shadow: 2px 2px 2px #fff;
-  }
-
-  /* 設定表單的樣式 */
-  .edit-restaurant-form {
-    width: 600px;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* 設定表單元素的樣式 */
-  .edit-restaurant-form .form-group {
-    margin-bottom: 30px;
-  }
-  
-  .edit-restaurant-form label {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    display: inline-block;
-  }
-  
-  .form-label {
-    color: #000; /* 黑色 */
-    text-shadow: 2px 2px 4px rgb(255, 255, 255); /* 陰影效果 */
-    font-weight: 500;
-    
+.edit-restaurant-page {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 50px;
+  min-height: 100vh;
+  background-image: url("../../assets/restaurant-background.jpg");
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover;
 }
 
-  .edit-restaurant-form .form-control {
-    height: 40px;
-    font-size: 1.1em;
-  }
-  
-  .edit-restaurant-form button {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.2em;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
-  }
-  
-  .edit-restaurant-form button:hover {
-    background-color: #0056b3;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-    align-items: center;
-    background: linear-gradient(to bottom, #305bb8,  #598fdf); /* 使用漸層背景色 */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* 添加陰影效果 */
-    padding: 10px 20px; /* 調整項目間的間距 */
+.edit-restaurant-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: transparent;
+  margin-bottom: 50px;
+  margin-top: 20px;
 }
 
-.menu-items-link {
-    margin-left: 30px; /* 調整連結項目之間的距離 */
-    text-decoration: none; /* 移除連結底線 */
-    font-size: 1.2em;
-  }
-
-.navbar-brand {
-    font-size: 1.7em; /* 設定 logo 文字大小 */
-    font-weight: bold; /* 設定 logo 文字為粗體 */
-    color: white; /* 設定 logo 文字顏色 */
+.edit-restaurant-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000000;
+  font-size: 2em;
+  text-shadow: 10px 10px 10px #ffffff;
 }
 
-.navbar-brand:hover {
-    color: white; /* 確保滑鼠懸停時 logo 文字顏色不會改變 */
+.edit-restaurant-current-info-card {
+  text-align:start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 30px;
+  width: 90%;
+  border: 1px solid #ced4da;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  color: #000000;
 }
 
-.nav-link {
-    color: white; /* 設定導航連結文字顏色 */
+.edit-restaurant-form {
+  text-align:start;
+  width: 90%;
+  padding: 30px 30px;
+  border: 1px solid #ced4da;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
 }
 
-.nav-link:hover {
-    color: #cccccc; /* 當滑鼠懸停在導航連結上時，改變文字顏色 */
+.edit-restaurant-form .form-group {
+  margin-bottom: 15px;
 }
 
-  
-  .current-info {
-    color: #333;
-    font-size: 1.3em;
-    text-align: left;
-    max-width: 350px; /* 設定最大寬度 */
-    margin: 0 auto; /* 水平置中 */
-  }
-  
-  .div-current-info {
-    width: 50%;
-  }
-  
-  .mb-4 {
-    margin-bottom: 30px !important;
-  }
-  
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
+.edit-restaurant-form .form-label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.edit-restaurant-form .form-control {
+  height: 30px;
+  font-size: 0.8em;
+  border-color: #ced4da; 
+  border-radius: 5px; 
+  transition: border-color 0.2s ease; 
+}
+
+.edit-restaurant-form .form-control:hover {
+  border-color: #b8bfc4; 
+}
+
+.edit-restaurant-btn-submit-container{
+  display: flex;
+  justify-content: center; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.edit-restaurant-btn-submit {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  background-color: #5cb85c; /* 淡绿色 */
+  border-color: #5cb85c;
+  color: #ffffff; /* 白色文字 */
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.edit-restaurant-btn-submit:hover {
+  background-color: #449d44; /* 深绿色 */
+  border-color: #398439;
+}

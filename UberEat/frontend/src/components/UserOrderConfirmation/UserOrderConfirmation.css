@@ -1,0 +1,90 @@
+/* src/components/UserOrderConfirmation/UserOrderConfirmation.css */
+.confirmation-page {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+    background-image: url("../../assets/user_background.jpg");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+}
+
+.confirmation-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.confirmation-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 2em
+}
+.order-details {
+    align-items: center;
+    border: 1px solid #ced4da;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    width: 80%;
+}
+
+.order-details p {
+    color: #333;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.confirmation-table {
+    margin-top: 30px;
+    width: 87%;
+    text-align: center;
+}
+
+.checkout-row {
+    margin-top: 30px;
+    width: 80%;
+}
+
+.total-price {
+    text-align: right;
+    margin: 20px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.Go-to-Home-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.Go-to-Home-button {
+    float: right;
+    margin-top: 20px;
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+}
+
+.Go-to-Home-button:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

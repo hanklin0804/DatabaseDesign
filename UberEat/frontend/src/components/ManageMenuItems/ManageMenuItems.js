@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Container, Button, Card, Navbar, Nav, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './ManageMenuItems.css';
+import RestautantNavbar from '../RestautantNavbar/RestautantNavbar';
 
 function ManageMenuItems() {
   const navigate = useNavigate();
@@ -31,15 +32,7 @@ function ManageMenuItems() {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand onClick={() => navigate('/home-restaurant')}>Home</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link onClick={() => navigate('/edit-restaurant')} className="menu-items-link">Edit_Restaurant</Nav.Link>
-        </Nav>
-        <Nav className="ml-auto">
-          <Nav.Link onClick={() => navigate('/')} className="menu-items-link">Logout</Nav.Link>
-        </Nav>
-      </Navbar>
+      <RestautantNavbar />
 
       <Container className="manage-menu-items-container manage-menu-items-background">
         <div className='manage-menu-items-content'>
