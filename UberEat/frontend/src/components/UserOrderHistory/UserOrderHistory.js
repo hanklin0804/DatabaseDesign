@@ -5,7 +5,7 @@ import './UserOrderHistory.css';
 import UserNavbar from '../UserNavbar/UserNavbar';
 
 function UserOrderHistory() {
-    const [orderHistory, setOrderHistory] = useState([
+    const [orderHistory] = useState([
         { 
             orderNumber: "12345678", 
             restaurant: "Best Pizza",

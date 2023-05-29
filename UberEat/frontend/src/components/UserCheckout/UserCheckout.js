@@ -7,7 +7,7 @@ import UserNavbar from '../UserNavbar/UserNavbar';
 
 function UserCheckout() {
     const navigate = useNavigate();
-    const [totalPrice, setTotalPrice] = React.useState(500); // just a placeholder for now
+    const [totalPrice] = React.useState(500); // just a placeholder for now
 
     return (
         <div >

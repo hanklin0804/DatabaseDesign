@@ -1,12 +1,10 @@
 // src/components/ManageMenuItems/ManageMenuItems.js
 import React, { useState } from 'react';
-import { Container, Button, Card, Navbar, Nav, Form, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Container, Button, Card, Form, Row, Col } from 'react-bootstrap';
 import './ManageMenuItems.css';
 import RestautantNavbar from '../RestautantNavbar/RestautantNavbar';
 
 function ManageMenuItems() {
-  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState({ name: '', description: '', price: '' });
   const [editingIndex, setEditingIndex] = useState(null);

@@ -1,5 +1,10 @@
  /* src/components/HomeRestaurant/HomeRestaurant.css */
-.home-user-container {
+.home-user-page{
+    background-image: url("../../assets/user_background.jpg");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+}
+ .home-user-container {
     padding-top: 30px;
     display: flex;
     flex-wrap: wrap;
@@ -8,9 +13,7 @@
     padding-left: 100px;
     padding-right: 100px;
     text-align: center;
-    background-image: url("../../assets/user_background.jpg");
-    background-color: rgba(0, 0, 0, 0.5);
-    background-size: cover;
+
 }
 
 .restaurant-card {

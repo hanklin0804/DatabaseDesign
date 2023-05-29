@@ -1,12 +1,11 @@
 // src/components/HomeRestaurant/HomeRestaurant.js
 import React from 'react';
-import { Container, Button, Navbar, Nav, Row, Col } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './HomeRestaurant.css';
 import RestautantNavbar from '../RestautantNavbar/RestautantNavbar';
 
 function HomeRestaurant() {
-  const navigate = useNavigate();
 
   return (
     <div>

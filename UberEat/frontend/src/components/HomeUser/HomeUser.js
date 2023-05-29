@@ -38,7 +38,7 @@ function HomeUser() {
     return (
         <div>
             <UserNavbar />
-
+            <div className='home-user-page'>
             <Container className="home-user-container">
                 <h2 className="text-center">Restaurants</h2>
                 <div className="search-bar-container">
@@ -61,6 +61,7 @@ function HomeUser() {
                     </Row>
                 ))}
             </Container>
+        </div>
         </div>
     );
 }

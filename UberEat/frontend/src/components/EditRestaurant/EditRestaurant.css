@@ -46,6 +46,11 @@
   color: #000000;
 }
 
+.edit-restaurant-current-info-card img {
+  max-width: 200px;
+  height: auto;
+}
+
 .edit-restaurant-form {
   text-align:start;
   width: 90%;

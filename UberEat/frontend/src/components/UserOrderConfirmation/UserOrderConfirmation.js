@@ -7,15 +7,16 @@ import UserNavbar from '../UserNavbar/UserNavbar';
 
 function UserOrderConfirmation() {
     const navigate = useNavigate();
-    const [orderDetails, setOrderDetails] = React.useState({
+    const [orderDetails] = React.useState({
         orderNumber: "12345678",
+        orderTime: "2023-05-22 12:30",
         orderItems: [
             { name: "Dish 1", quantity: 2, price: 200 },
             { name: "Dish 2", quantity: 1, price: 150 },
         ],
         totalPrice: 550,
         shippingAddress: "123 Main St, City, Country",
-        estimatedDelivery: "2023-05-29",
+        estimatedDeliveryTime: "2023-05-22 13:30",
     });
 
     return (
@@ -26,8 +27,9 @@ function UserOrderConfirmation() {
                 <h2 className="confirmation-title">Order Confirmation</h2>
                 <div className="order-details">
                     <p><strong>Order Number:</strong> {orderDetails.orderNumber}</p>
+                    <p><strong>Order Time:</strong> {orderDetails.orderTime}</p>
                     <p><strong>Shipping Address:</strong> {orderDetails.shippingAddress}</p>
-                    <p><strong>Estimated Delivery:</strong> {orderDetails.estimatedDelivery}</p>
+                    <p><strong>Estimated Delivery:</strong> {orderDetails.estimatedDeliveryTime}</p>
                 </div>
                 <Table striped bordered hover className="confirmation-table">
                     <thead>

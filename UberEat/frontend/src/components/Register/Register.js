@@ -10,7 +10,6 @@ function Register() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [deliveryAddress, setDeliveryAddress] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,12 +45,7 @@ function Register() {
           <Form.Group controlId="formBasicPhoneNumber">
             <Form.Label>Phone Number</Form.Label>
             <Form.Control type="text" placeholder="Enter your phone number" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicDeliveryAddress">
-            <Form.Label>Delivery Address</Form.Label>
-            <Form.Control type="text" placeholder="Enter your delivery address" value={deliveryAddress} onChange={e => setDeliveryAddress(e.target.value)} />
-          </Form.Group>
+          </Form.Group><br/>
 
           <Button variant="primary" type="submit">
             Register
