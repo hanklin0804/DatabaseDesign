@@ -34,7 +34,7 @@ mkdir src/components/HomeUser
 mkdir src/components/HomeRestaurant
 mkdir src/components/RoleSelection 
 mkdir src/components/EditRestaurant  
-mkdir src/components/ManageMenuItems   
+mkdir src/components/ManageMenu   
 mkdir src/components/UserCart
 mkdir src/components/UserCheckout
 mkdir src/components/UserMenuDetail
@@ -52,8 +52,8 @@ touch src/components/HomeRestaurant/HomeRestaurant.js
 touch src/components/HomeRestaurant/HomeRestaurant.css
 touch src/components/EditRestaurant/EditRestaurant.js
 touch src/components/EditRestaurant/EditRestaurant.css
-touch src/components/ManageMenuItems/ManageMenuItems.js
-touch src/components/ManageMenuItems/ManageMenuItems.css
+touch src/components/ManageMenu/ManageMenu.js
+touch src/components/ManageMenu/ManageMenu.css
 touch src/components/Login/Login.js
 touch src/components/Login/Login.css
 touch src/components/Register/Register.js

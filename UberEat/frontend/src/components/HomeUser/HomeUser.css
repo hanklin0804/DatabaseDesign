@@ -4,42 +4,45 @@
     background-color: rgba(0, 0, 0, 0.5);
     background-size: cover;
 }
- .home-user-container {
+.home-user-container {
     padding-top: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     flex-direction: column;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 5vw; /* 5% of viewport width */
+    padding-right: 5vw; /* 5% of viewport width */
     text-align: center;
-
 }
 
-.restaurant-card {
-    width: 210px; /* 设置卡片的宽度 */
-    height: 350px; /* 设置卡片的高度 */
-    padding-bottom: 30px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s; /* Animation */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Shadow effect */
-}
+
 
 .text-center{
     padding-bottom: 10px;
     font-size: 2em;
 }
 
-.cards{
+.cards {
     display: flex;
-    flex-direction: row;
-    justify-content:  space-evenly;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     padding-bottom: 90px;
 }
+
+.restaurant-card {
+    width: 210px;
+    padding-bottom: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+}
+
+
 .restaurant-card .card-img-top {
     flex: 0.5;
     max-height: 200px;
@@ -54,22 +57,25 @@
 
 .restaurant-card .card-body {
     flex: 0.5;
-    padding: 15px; /* Card body padding */
-    background-color: #f8f9fa; /* Card body background color */
-    height: 70px; /* Set a fixed height */
-    position: relative; /* Relative position for the 'read more' link */
-    overflow: hidden; /* Hide the overflow */
+    padding: 15px;
+    /* Card body padding */
+    background-color: #f8f9fa;
+    /* Card body background color */
+    height: auto;
+    /* Set height to auto */
+    position: relative;
+    /* Relative position for the 'read more' link */
+    overflow: visible;
+    /* Make overflow visible */
 }
 
 .restaurant-card .card-text {
-    font-size: small; /* Adjust as needed */
+    font-size: small;
     color: #6c757d;
-    overflow: hidden; /* Hide the overflow */
-    text-overflow: ellipsis; /* Add ellipsis (...) when the text overflows */
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* Number of lines to display before truncating */
-    -webkit-box-orient: vertical;
-    
+    overflow: visible;
+    display: initial;
+    /* 增加margin */
+    margin-bottom: 10px;
 }
 
 .restaurant-card:hover {
@@ -111,8 +117,9 @@
 }
 
 .search-bar {
-    width: 50%;
     height: 30px;
+    max-width: 100%;
+        width: 50%;
     padding-bottom: 30px;
     padding: 5px;
     border: none;
@@ -124,7 +131,9 @@
 .search-bar-container {
     display: flex;
     justify-content: center;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 5vw;
+    /* 5% of viewport width */
+    padding-right: 5vw;
+    /* 5% of viewport width */
     padding-bottom: 60px;
 }

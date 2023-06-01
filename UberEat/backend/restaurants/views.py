@@ -1,23 +1,40 @@
 # restaurants/views.py
-from rest_framework import viewsets, status
-# from rest_framework.decorators import action
-# from rest_framework.response import Response
-from .models import Restaurants, MenuItems
-from .serializers import RestaurantsSerializer, MenuItemsSerializer
+from rest_framework import generics
 
-class RestaurantsViewSet(viewsets.ModelViewSet):
+from .models import Restaurants, Menu
+from .serializers import RestaurantsSerializer, MenuSerializer
+
+
+class RestaurantsListView(generics.ListAPIView):
     queryset = Restaurants.objects.all()
     serializer_class = RestaurantsSerializer
-    filterset_fields = ['name', 'rating']  # filter by name and rating
-    # @action(detail=True, methods=['post'], url_path='menu-items')
-    # def create_menu_item(self, request, pk=None):
-    #     serializer = MenuItemsSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save(restaurant_id=pk)
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # filterset_fields = ['name', 'rating']  # filter by name and rating
 
-class MenuItemsViewSet(viewsets.ModelViewSet):
-    queryset = MenuItems.objects.all()
-    serializer_class = MenuItemsSerializer
-    filterset_fields = ['name', 'restaurant']  # filter by name and associated restaurant
+
+class RestaurantsCreateView(generics.CreateAPIView):
+    queryset = Restaurants.objects.all()
+    serializer_class = RestaurantsSerializer
+
+
+class RestaurantsDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Restaurants.objects.all()
+    serializer_class = RestaurantsSerializer
+    lookup_field = 'name'
+
+# Menu Item
+
+
+class MenuListView(generics.ListAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+
+
+class MenuCreateView(generics.CreateAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+
+
+class MenuDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+    lookup_field = 'name'

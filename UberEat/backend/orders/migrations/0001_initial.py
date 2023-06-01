@@ -17,22 +17,29 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Orders',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('order_time', models.DateTimeField(auto_now_add=True)),
                 ('delivery_time', models.DateTimeField()),
                 ('delivery_address', models.CharField(max_length=255)),
-                ('total_price', models.DecimalField(decimal_places=2, max_digits=7)),
-                ('restaurant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='restaurants.restaurants')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.users')),
+                ('total_price', models.DecimalField(
+                    decimal_places=2, max_digits=7)),
+                ('restaurant', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='restaurants.restaurants')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='users.users')),
             ],
         ),
         migrations.CreateModel(
             name='OrderItems',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.PositiveSmallIntegerField()),
-                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='restaurants.menuitems')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.orders')),
+                ('item', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='restaurants.Menu')),
+                ('order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='orders.orders')),
             ],
         ),
     ]
