@@ -1,14 +1,42 @@
 # orders/views.py
-from rest_framework import viewsets
-from .models import Orders, OrderItems
-from .serializers import OrdersSerializer, OrderItemsSerializer
+from rest_framework import generics
 
-class OrdersViewSet(viewsets.ModelViewSet):
-    queryset = Orders.objects.all()
-    serializer_class = OrdersSerializer
-    filterset_fields = ['user']  
+from .models import Order, OrderItem
+from .serializers import OrderSerializer, OrderItemSerializer
 
-class OrderItemsViewSet(viewsets.ModelViewSet):
-    queryset = OrderItems.objects.all()
-    serializer_class = OrderItemsSerializer
-    filterset_fields = ['order']  
+
+class OrderListView(generics.ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    # filterset_fields = ['user']
+
+
+class OrderCreateView(generics.CreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    # filterset_fields = ['user']
+
+
+class OrderDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    lookup_field = 'user'
+
+
+# ----------------------------------------------------
+
+class OrderItemListView(generics.ListAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+    # filterset_fields = ['order']
+
+
+class OrderItemCreateView(generics.CreateAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+
+class OrderItemDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+    lookup_field = 'order'

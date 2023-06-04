@@ -1,5 +1,7 @@
 // App.js
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { UserProvider } from "../src/components/UserProvider/UserProvider";
+
 import Home from "./components/Home/Home";
 import HomeUser from "./components/HomeUser/HomeUser";
 import HomeRestaurant from "./components/HomeRestaurant/HomeRestaurant";
@@ -20,30 +22,32 @@ import UserRestaurantDetail from "./components/UserRestaurantDetail/UserRestaura
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/home-user" element={<HomeUser />} />
-        <Route path="/home-restaurant" element={<HomeRestaurant />} />
-        <Route path="/edit-restaurant" element={<EditRestaurant />} />
-        <Route path="/manage-menu-items" element={<ManageMenuItems />} />
-        <Route path="/role-selector" element={<RoleSelection />} />
-        <Route path="/user-cart" element={<UserCart />} />
-        <Route path="/user-checkout" element={<UserCheckout />} />
-        {/* <Route path="/user-menu-detail" element={<UserMenuDetail />} /> */}
-        <Route
-          path="/user-order-confirmation"
-          element={<UserOrderConfirmation />}
-        />
-        <Route path="/user-order-history" element={<UserOrderHistory />} />
-        <Route path="/user-order-status" element={<UserOrderStatus />} />
-        {/* <Route path="/user-ratings-and-reviews" element={<UserRatingsAndReviews />} /> */}
-        <Route
-          path="/user-restaurant-detail"
-          element={<UserRestaurantDetail />}
-        />
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home-user" element={<HomeUser />} />
+          <Route path="/home-restaurant" element={<HomeRestaurant />} />
+          <Route path="/edit-restaurant" element={<EditRestaurant />} />
+          <Route path="/manage-menu-items" element={<ManageMenuItems />} />
+          <Route path="/role-selector" element={<RoleSelection />} />
+          <Route path="/user-cart" element={<UserCart />} />
+          <Route path="/user-checkout" element={<UserCheckout />} />
+          {/* <Route path="/user-menu-detail" element={<UserMenuDetail />} /> */}
+          <Route
+            path="/user-order-confirmation"
+            element={<UserOrderConfirmation />}
+          />
+          <Route path="/user-order-history" element={<UserOrderHistory />} />
+          <Route path="/user-order-status" element={<UserOrderStatus />} />
+          {/* <Route path="/user-ratings-and-reviews" element={<UserRatingsAndReviews />} /> */}
+          <Route
+            path="/user-restaurant-detail"
+            element={<UserRestaurantDetail />}
+          />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </UserProvider>
     </Router>
   );
 }

@@ -1,41 +1,40 @@
 /* src/components/Login/Login.css */
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url("../../assets/vegetarian-restaurant.jpg");
-    background-color: rgba(0, 0, 0, 0.5);
-    background-size: cover;
-  }
-  
-  .login-content {
-    background-color: rgba(255, 255, 255, 0.83);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-  }
-  
-  .login-form {
-    margin-top: 20px;
-  }
-  
-  .login-form label {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .login-form input {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .login-form button {
-    width: 100%;
-    height: 40px;
-    font-size: 18px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../assets/vegetarian-restaurant.jpg");
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+}
+
+.login-content {
+  background-color: rgba(255, 255, 255, 0.83);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.login-form label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.login-form input {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.login-form button {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+}

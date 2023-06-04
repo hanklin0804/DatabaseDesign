@@ -1,18 +1,17 @@
 # users/serializers.py
-from django.contrib.auth import authenticate
 from rest_framework import serializers
 
-from .models import Users
+from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Users
+        model = User
         fields = '__all__'
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = Users.objects.create(**validated_data)
+        user = User.objects.create(**validated_data)
         return user
 
 
@@ -22,9 +21,9 @@ class LoginSerializer(serializers.Serializer):
 
     def validate(self, data):
         try:
-            user = Users.objects.get(email=data['email'])
+            user = User.objects.get(email=data['email'])
             if user.password != data['password']:
                 raise serializers.ValidationError("Incorrect Credentials")
             return user
-        except Users.DoesNotExist:
+        except User.DoesNotExist:
             raise serializers.ValidationError("Account Doesn't Exist")

@@ -1,40 +1,55 @@
 // src/components/Login.js
-import React, { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import React, { useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
+import { useUser } from "../UserProvider/UserProvider";
+
+import "./Login.css";
+import * as userAPI from "../../API/user";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { user } = useUser();
+
+  console.log(user);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Assume all logins are successful for demo purposes
-    console.log(`User ${email} logged in!`);
-
-    // navigate to role selector page after successful login
-    navigate('/role-selector');
+    const res = await userAPI.login({ email: email, password: password });
+    if (res.status === 200) {
+      navigate("/role-selector");
+    } else alert("Email or password error!");
   };
 
   return (
     <Container className="login-container">
       <div className="login-content">
         <h2>Login</h2>
-        <Form onSubmit={handleSubmit} className="login-form">
+        <Form className="login-form">
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" onClick={(e) => handleSubmit(e)}>
             Login
           </Button>
         </Form>

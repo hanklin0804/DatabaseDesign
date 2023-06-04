@@ -11,6 +11,13 @@ load_dotenv()
 ENV_DEBUG = os.getenv("DEBUG")
 ENV_ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 
+ENV_DB_ENGINE = os.getenv("DB_ENGINE")
+ENV_DB_NAME = os.getenv("DB_NAME")
+ENV_DB_USER = os.getenv("DB_USER")
+ENV_DB_PASSWORD = os.getenv("DB_PASSWORD")
+ENV_DB_HOST = os.getenv("DB_HOST")
+ENV_DB_PORT = os.getenv("DB_PORT")
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-3g&s5g35=#eq7jm_9$0vm)iybw9i++p(k)jn+@suc#@g#3_^av'
 
@@ -84,12 +91,12 @@ WSGI_APPLICATION = 'ubereats.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ubereat',
-        'USER': 'hanklin',
-        'PASSWORD': 'hanklin',
-        'HOST': '34.125.157.213',
-        'PORT': '33336',
+        'ENGINE': ENV_DB_ENGINE,
+        'NAME': ENV_DB_NAME,
+        'USER': ENV_DB_USER,
+        'PASSWORD': ENV_DB_PASSWORD,
+        'HOST': ENV_DB_HOST,
+        'PORT': ENV_DB_PORT,
     }
 }
 
@@ -135,4 +142,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True

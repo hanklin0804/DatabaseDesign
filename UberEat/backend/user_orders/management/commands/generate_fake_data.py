@@ -4,10 +4,10 @@ from django.utils import timezone
 from decimal import Decimal
 from random import randint, uniform
 
-from orders.models import Orders, OrderItems
-from restaurants.models import Restaurants, Menu
-from users.models import Users
-from reviews.models import Reviews
+from orders.models import Order, OrderItem
+from restaurants.models import Restaurant, Menu
+from users.models import User
+from reviews.models import Review
 
 
 class Command(BaseCommand):
@@ -18,7 +18,7 @@ class Command(BaseCommand):
         fake = Faker()
 
         for _ in range(10):  # Creating 10 Faker users
-            Users.objects.create(
+            User.objects.create(
                 first_name=fake.first_name(),
                 last_name=fake.last_name(),
                 email=fake.email(),
@@ -28,7 +28,7 @@ class Command(BaseCommand):
             )
 
         for _ in range(5):  # Creating 5 Faker restaurants
-            restaurant = Restaurants.objects.create(
+            restaurant = Restaurant.objects.create(
                 name=fake.company(),
                 description=fake.text(),  # This will be null as we can't generate an image
                 address=fake.address(),
@@ -44,15 +44,15 @@ class Command(BaseCommand):
                     price=Decimal(uniform(5, 50)).quantize(Decimal("0.00"))
                 )
 
-        users = Users.objects.all()
-        restaurants = Restaurants.objects.all()
+        users = User.objects.all()
+        restaurants = Restaurant.objects.all()
 
         for user in users:
             for _ in range(2):  # Creating 2 orders for each user
                 restaurant = fake.random_element(elements=restaurants)
                 delivery_time = fake.date_time_between(
                     start_date='now', end_date='+1h', tzinfo=timezone.get_current_timezone())
-                order = Orders.objects.create(
+                order = Order.objects.create(
                     user=user,
                     restaurant=restaurant,
                     delivery_time=delivery_time,
@@ -63,14 +63,14 @@ class Command(BaseCommand):
 
                 menu_items = Menu.objects.filter(restaurant=restaurant)
                 for _ in range(randint(1, 3)):  # Adding 1-3 order items for each order
-                    OrderItems.objects.create(
+                    OrderItem.objects.create(
                         order=order,
                         item=fake.random_element(elements=menu_items),
                         quantity=randint(1, 3)
                     )
 
             for _ in range(2):  # Adding 2 reviews for each user
-                Reviews.objects.create(
+                Review.objects.create(
                     user=user,
                     restaurant=fake.random_element(elements=restaurants),
                     rating=randint(1, 5),

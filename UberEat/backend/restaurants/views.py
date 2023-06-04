@@ -1,24 +1,24 @@
 # restaurants/views.py
 from rest_framework import generics
 
-from .models import Restaurants, Menu
-from .serializers import RestaurantsSerializer, MenuSerializer
+from .models import Restaurant, Menu
+from .serializers import RestaurantSerializer, MenuSerializer
 
 
-class RestaurantsListView(generics.ListAPIView):
-    queryset = Restaurants.objects.all()
-    serializer_class = RestaurantsSerializer
+class RestaurantListView(generics.ListAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
     # filterset_fields = ['name', 'rating']  # filter by name and rating
 
 
-class RestaurantsCreateView(generics.CreateAPIView):
-    queryset = Restaurants.objects.all()
-    serializer_class = RestaurantsSerializer
+class RestaurantCreateView(generics.CreateAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
 
 
-class RestaurantsDetailedView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Restaurants.objects.all()
-    serializer_class = RestaurantsSerializer
+class RestaurantDetailedView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
     lookup_field = 'name'
 
 # Menu Item

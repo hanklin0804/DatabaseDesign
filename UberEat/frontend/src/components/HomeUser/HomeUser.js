@@ -6,8 +6,13 @@ import * as restuarntAPI from "../../API/restaurant";
 import "./HomeUser.css";
 import UserNavbar from "../UserNavbar/UserNavbar";
 
+import { useUser } from "../UserProvider/UserProvider";
+
 function RestaurantCard({ restaurant }) {
   const navigate = useNavigate();
+  const { user } = useUser();
+
+  console.log(user);
   return (
     <Col sm={12} md={6} lg={4} key={restaurant.id}>
       <Card

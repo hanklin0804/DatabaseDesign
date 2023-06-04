@@ -1,15 +1,17 @@
 # reviews/models.py
+from uuid import uuid4
 from django.db import models
-from users.models import Users
-from restaurants.models import Restaurants
+from users.models import User
+from restaurants.models import Restaurant
 
 
-class Reviews(models.Model):
-    user = models.ForeignKey(Users, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurants, on_delete=models.CASCADE)
+class Review(models.Model):
+    uuid = models.CharField(max_length=255, blank=True, default=uuid4)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField()
     review = models.TextField()
 
     class Meta:
-        db_table = "reviews"
+        db_table = "review"
         managed = True
