@@ -12,7 +12,6 @@ from reviews.models import Review
 
 class Command(BaseCommand):
     help = 'Creates fake data for the application'
-    print()
 
     def handle(self, *args, **options):
         fake = Faker()
@@ -27,10 +26,12 @@ class Command(BaseCommand):
                 delivery_address=fake.address()
             )
 
+        users = User.objects.all()
         for _ in range(5):  # Creating 5 Faker restaurants
             restaurant = Restaurant.objects.create(
+                user=fake.random_element(elements=users),
                 name=fake.company(),
-                description=fake.text(),  # This will be null as we can't generate an image
+                description=fake.text(),
                 address=fake.address(),
                 phone_number=fake.phone_number(),
                 rating=Decimal(uniform(1, 5)).quantize(Decimal("0.00"))
@@ -44,7 +45,6 @@ class Command(BaseCommand):
                     price=Decimal(uniform(5, 50)).quantize(Decimal("0.00"))
                 )
 
-        users = User.objects.all()
         restaurants = Restaurant.objects.all()
 
         for user in users:
@@ -57,17 +57,24 @@ class Command(BaseCommand):
                     restaurant=restaurant,
                     delivery_time=delivery_time,
                     delivery_address=fake.address(),
-                    total_price=Decimal(
-                        uniform(10, 100)).quantize(Decimal("0.00"))
+                    total_price=0
                 )
 
                 menu_items = Menu.objects.filter(restaurant=restaurant)
+                total_price = 0
                 for _ in range(randint(1, 3)):  # Adding 1-3 order items for each order
+                    item = fake.random_element(elements=menu_items)
+                    quantity = randint(1, 3)
                     OrderItem.objects.create(
                         order=order,
-                        item=fake.random_element(elements=menu_items),
-                        quantity=randint(1, 3)
+                        item=item,
+                        quantity=quantity
                     )
+                    total_price += item.price * quantity
+
+                order.total_price = Decimal(
+                    total_price).quantize(Decimal("0.00"))
+                order.save()
 
             for _ in range(2):  # Adding 2 reviews for each user
                 Review.objects.create(

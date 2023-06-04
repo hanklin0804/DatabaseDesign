@@ -24,6 +24,7 @@ function App() {
     <Router>
       <UserProvider>
         <Routes>
+          <Route path="/" index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home-user" element={<HomeUser />} />
@@ -45,7 +46,6 @@ function App() {
             path="/user-restaurant-detail"
             element={<UserRestaurantDetail />}
           />
-          <Route path="/" element={<Home />} />
         </Routes>
       </UserProvider>
     </Router>

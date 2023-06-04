@@ -1,13 +1,18 @@
 // src/components/EditRestaurant/EditRestaurant.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Form, Button, Card, Image } from "react-bootstrap";
 import "./EditRestaurant.css";
 import RestautantNavbar from "../RestautantNavbar/RestautantNavbar";
 
 import * as restaurantAPI from "../../API/restaurant";
+import { useUser } from "../UserProvider/UserProvider";
 
 function EditRestaurant() {
-  const restaurant_name = "";
+  const user = useUser();
+
+  const [restaurantExist, setRestaurantExist] = useState(true);
+
+  const [uuid, setUUID] = useState("Null");
   const [name, setName] = useState("Example Restaurant");
   const [description, setDescription] = useState(
     "This is an example description."
@@ -18,18 +23,31 @@ function EditRestaurant() {
   const [logoURL, setLogoURL] = useState(null); // New state for the logo URL
 
   const handleSubmit = async (e) => {
-    const data = {
-      name: name,
-      description: description,
-      address: address,
-      phone_number: phoneNumber,
-      // logo:logoURL
-    };
-    const res = await restaurantAPI.putRestauarnt(restaurant_name, data);
-    console.log(res);
     e.preventDefault();
-    if (res.status.ok) alert(`Restaurant ${name} updated!`);
-    else alert(`Restaurant ${name} update failed!`);
+    if (restaurantExist) {
+      const res = await restaurantAPI.putRestauarnt(uuid, {
+        name: name,
+        user_uuid: user.uuid,
+        description: description,
+        address: address,
+        phone_number: phoneNumber,
+        // logo:logoURL
+      });
+      if (res.status === 200) alert(`Restaurant informatiion updated!`);
+      else alert(`Restaurant information update failed!`);
+    } else {
+      const res = await restaurantAPI.postRestauarnt({
+        name: name,
+        user_uuid: user.uuid,
+        description: description,
+        address: address,
+        phone_number: phoneNumber,
+        // logo:logoURL
+      });
+
+      if (res.status === 201) alert(`Restaurant created!`);
+      else alert(`Restaurant created failed!`);
+    }
   };
 
   const handleLogoChange = (e) => {
@@ -39,6 +57,27 @@ function EditRestaurant() {
       setLogoURL(URL.createObjectURL(file));
     }
   };
+
+  const fetchData = async (user) => {
+    const restaurants = await restaurantAPI.getRestauarnt();
+    const restaurant = restaurants.data.find(
+      (restaurant) => restaurant.user.uuid === user.uuid
+    );
+
+    if (restaurant) {
+      setUUID(restaurant.uuid);
+      setName(restaurant.name);
+      setDescription(restaurant.description);
+      setAddress(restaurant.address);
+      setPhoneNumber(restaurant.phone_number);
+      setLogoURL(restaurant.logo);
+      setRestaurantExist(true);
+    } else setRestaurantExist(false);
+  };
+
+  useEffect(() => {
+    fetchData(user);
+  }, [user]);
 
   return (
     <div>

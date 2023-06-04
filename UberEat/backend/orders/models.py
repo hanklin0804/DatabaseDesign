@@ -1,6 +1,7 @@
 # orders/models.py
 from uuid import uuid4
 from django.db import models
+
 from users.models import User
 from restaurants.models import Restaurant, Menu
 

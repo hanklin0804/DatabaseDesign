@@ -27,17 +27,17 @@ const postMenu = async (data) => {
   }
 };
 
-const putMenu = async (id, data) => {
+const putMenu = async (uuid, data) => {
   try {
-    return await axios.put(API + String(id) + "/", data);
+    return await axios.put(API + String(uuid) + "/", data);
   } catch (error) {
     return error;
   }
 };
 
-const deleteMenu = async (id) => {
+const deleteMenu = async (uuid) => {
   try {
-    return await axios.delete(API + String(id));
+    return await axios.delete(API + String(uuid));
   } catch (error) {
     return error;
   }

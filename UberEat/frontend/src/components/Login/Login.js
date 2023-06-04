@@ -3,15 +3,10 @@ import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import { useUser } from "../UserProvider/UserProvider";
-
 import "./Login.css";
 import * as userAPI from "../../API/user";
 
 function Login() {
-  const { user } = useUser();
-
-  console.log(user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();

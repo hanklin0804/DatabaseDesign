@@ -2,24 +2,24 @@
 from rest_framework import generics
 
 from .models import Restaurant, Menu
-from .serializers import RestaurantSerializer, MenuSerializer
+from .serializers import RestaurantSerializer, RestaurantCreateSerializer
+from .serializers import MenuSerializer, MenuCreateSerializer
 
 
 class RestaurantListView(generics.ListAPIView):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
-    # filterset_fields = ['name', 'rating']  # filter by name and rating
 
 
 class RestaurantCreateView(generics.CreateAPIView):
     queryset = Restaurant.objects.all()
-    serializer_class = RestaurantSerializer
+    serializer_class = RestaurantCreateSerializer
 
 
 class RestaurantDetailedView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Restaurant.objects.all()
-    serializer_class = RestaurantSerializer
-    lookup_field = 'name'
+    serializer_class = RestaurantCreateSerializer
+    lookup_field = 'uuid'
 
 # Menu Item
 
@@ -31,10 +31,10 @@ class MenuListView(generics.ListAPIView):
 
 class MenuCreateView(generics.CreateAPIView):
     queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
+    serializer_class = MenuCreateSerializer
 
 
 class MenuDetailedView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
-    lookup_field = 'name'
+    serializer_class = MenuCreateSerializer
+    lookup_field = 'uuid'
