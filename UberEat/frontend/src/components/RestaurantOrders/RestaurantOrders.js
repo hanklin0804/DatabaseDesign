@@ -27,7 +27,12 @@ function RestaurantOrders() {
   const handleDelivery = async (index) => {
     let newArray = [...restaurantOrders];
     newArray[index].status = "Out for delivery";
-    const res = await orderAPI.putOrder(newArray[index].uuid, newArray[index]);
+    const data = newArray[index];
+    delete data.restaurant.logo;
+    delete data.restaurant.name;
+    delete data.restaurant.user;
+    delete data.user.email;
+    const res = await orderAPI.putOrder(newArray[index].uuid, data);
     console.log(res);
     setResturantOrders(newArray);
   };
