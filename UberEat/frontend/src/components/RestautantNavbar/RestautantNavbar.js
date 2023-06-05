@@ -30,13 +30,13 @@ function RestautantNavbar() {
           onClick={() => navigate("/edit-restaurant")}
           className="menu-items-link"
         >
-          Edit_Restaurant
+          Edit Restaurant
         </Nav.Link>
         <Nav.Link
           onClick={() => navigate("/manage-menu-items")}
           className="menu-items-link"
         >
-          Menu_Items
+          Menu Items
         </Nav.Link>
         <Nav.Link
           onClick={() => navigate("/restaurant-orders")}

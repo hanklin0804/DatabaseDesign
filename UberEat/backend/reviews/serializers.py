@@ -4,10 +4,14 @@ from rest_framework import serializers
 from .models import Review
 
 from users.models import User
+from users.serializers import UserSerializer
 from restaurants.models import Restaurant
+from restaurants.serializers import RestaurantSerializer
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    restaurant = RestaurantSerializer()
 
     class Meta:
         model = Review

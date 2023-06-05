@@ -19,6 +19,8 @@ import UserOrderHistory from "./components/UserOrderHistory/UserOrderHistory";
 import UserOrderStatus from "./components/UserOrderStatus/UserOrderStatus";
 import UserRatingsAndReviews from "./components/UserRatingsAndReviews/UserRatingsAndReviews";
 import UserRestaurantDetail from "./components/UserRestaurantDetail/UserRestaurantDetail";
+import UserRestaurantShowReviews from "./components/UserRestaurantShowReviews/UserRestaurantShowReviews";
+
 
 function App() {
   return (
@@ -41,8 +43,8 @@ function App() {
           <Route path="/user-order-history" element={<UserOrderHistory />} />
           <Route path="/user-order-status" element={<UserOrderStatus />} />
           <Route path="/user-ratings-and-reviews" element={<UserRatingsAndReviews />} />
-          <Route path="/user-restaurant-detail" element={<UserRestaurantDetail />}
-          />
+          <Route path="/user-restaurant-detail" element={<UserRestaurantDetail />}/>
+          <Route path="/user-restaurant-show-reviews" element={<UserRestaurantShowReviews />} />
         </Routes>
       </UserProvider>
     </Router>

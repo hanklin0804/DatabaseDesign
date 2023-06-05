@@ -42,7 +42,14 @@ function UserNavbar() {
         >
           Order History
         </Nav.Link>
+        <Nav.Link
+          onClick={() => navigate("/user-restaurant-show-reviews")}
+          className="menu-items-link"
+        >
+          Restaurant Review
+        </Nav.Link>
       </Nav>
+
       <Nav>
         <Nav.Link onClick={() => Logout()} className="menu-items-link">
           Logout
