@@ -9,7 +9,6 @@ function RestautantNavbar() {
   const navigate = useNavigate();
 
   const [cookies, removeCookie] = useCookies([]);
-  console.log(cookies);
 
   const Logout = () => {
     Object.keys(cookies).forEach((cookieName) => {
