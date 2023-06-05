@@ -65,32 +65,32 @@ function UserRestaurantDetail() {
     <div>
       <UserNavbar />
       <div className="restaurant-detail-page">
-      <Container className="restaurant-detail-container">
-        <h2 className="title">{restaurant.name}</h2>
-        <p className="description">{restaurant.description}</p>
-        <Row className="cards">
-          {menuData.map((menu) => (
-            <Col sm={12} md={4} key={menu.id}>
-              <Card className="dish-card">
-                <Card.Body>
-                  <Card.Title>{menu.name}</Card.Title>
-                  <Card.Text>{menu.description}</Card.Text>
-                  <Card.Text>Price: {menu.price}</Card.Text>
-                  <div className="button-container">
-                    <Button
-                      className="add_cart_btn"
-                      variant="primary"
-                      onClick={() => addToCart(menu)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </Container>
+        <Container className="restaurant-detail-container">
+          <h2 className="title">{restaurant.name}</h2>
+          <p className="description">{restaurant.description}</p>
+          <Row className="cards">
+            {menuData.map((menu) => (
+              <Col sm={12} md={4} key={menu.id}>
+                <Card className="dish-card">
+                  <Card.Body>
+                    <Card.Title>{menu.name}</Card.Title>
+                    <Card.Text>{menu.description}</Card.Text>
+                    <Card.Text>Price: {menu.price}</Card.Text>
+                    <div className="button-container">
+                      <Button
+                        className="add_cart_btn"
+                        variant="primary"
+                        onClick={() => addToCart(menu)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </div>
     </div>
   );
