@@ -1,7 +1,8 @@
+// frontend/src/components/UserNavbar/UserNavbar.js
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./UserNavbar.css"; // 假設你已經將 Navbar 相關的 CSS 代碼移到了一個新的 CSS 文件中
+import "./UserNavbar.css"; 
 
 import { useUser } from "../UserProvider/UserProvider";
 
@@ -37,9 +38,12 @@ function UserNavbar() {
           Logout
         </Nav.Link>
       </Nav>
-      <h3>
-        Hello,{user.firstName} {user.lastName}
-      </h3>
+      <div style={{ flexGrow: 1 }}></div>
+      <Nav>
+        <Nav.Link className="menu-items-link user-greeting">
+          Hello, {user.firstName} {user.lastName}
+        </Nav.Link>
+      </Nav>
     </Navbar>
   );
 }

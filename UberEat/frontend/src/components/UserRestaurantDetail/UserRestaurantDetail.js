@@ -15,6 +15,7 @@ function UserRestaurantDetail() {
 
   const addToCart = (dish) => {
     setCartItems([...cartItems, dish]);
+    localStorage.setItem("cartItems", JSON.stringify([...cartItems, dish]));
   };
 
   useEffect(() => {

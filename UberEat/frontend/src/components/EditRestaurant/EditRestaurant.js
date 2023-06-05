@@ -1,4 +1,5 @@
 // src/components/EditRestaurant/EditRestaurant.js
+// src/components/EditRestaurant/EditRestaurant.js
 import React, { useState, useEffect } from "react";
 import { Container, Form, Button, Card, Image } from "react-bootstrap";
 import "./EditRestaurant.css";
@@ -11,6 +12,9 @@ function EditRestaurant() {
   const user = useUser();
 
   const [restaurantExist, setRestaurantExist] = useState(true);
+  const [submitStatus, setSubmitStatus] = useState(null); // add new state to show status
+
+  const [restaurant, setRestaurant] = useState({});
 
   const [uuid, setUUID] = useState("Null");
   const [name, setName] = useState("Example Restaurant");
@@ -24,6 +28,7 @@ function EditRestaurant() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitStatus('Processing...');
     if (restaurantExist) {
       const res = await restaurantAPI.putRestauarnt(uuid, {
         name: name,
@@ -33,8 +38,11 @@ function EditRestaurant() {
         phone_number: phoneNumber,
         // logo:logoURL
       });
-      if (res.status === 200) alert(`Restaurant informatiion updated!`);
-      else alert(`Restaurant information update failed!`);
+      if (res.status === 200) {
+        setSubmitStatus('Restaurant informatiion updated!');
+      } else {
+        setSubmitStatus('Restaurant information update failed!');
+      }
     } else {
       const res = await restaurantAPI.postRestauarnt({
         name: name,
@@ -45,9 +53,13 @@ function EditRestaurant() {
         // logo:logoURL
       });
 
-      if (res.status === 201) alert(`Restaurant created!`);
-      else alert(`Restaurant created failed!`);
+      if (res.status === 201) {
+        setSubmitStatus('Restaurant created!');
+      } else {
+        setSubmitStatus('Restaurant created failed!');
+      }
     }
+    fetchData(user);  // fetch data after submit
   };
 
   const handleLogoChange = (e) => {
@@ -71,6 +83,7 @@ function EditRestaurant() {
       setAddress(restaurant.address);
       setPhoneNumber(restaurant.phone_number);
       setLogoURL(restaurant.logo);
+      setRestaurant(restaurant);
       setRestaurantExist(true);
     } else setRestaurantExist(false);
   };
@@ -96,19 +109,21 @@ function EditRestaurant() {
                 />
               )}
               <p>
-                <strong>Name:</strong> {name}
+                <strong>Name:</strong> {restaurant.name}
               </p>
               <p>
-                <strong>Description:</strong> {description}
+                <strong>Description:</strong> {restaurant.description}
               </p>
               <p>
-                <strong>Address:</strong> {address}
+                <strong>Address:</strong> {restaurant.address}
               </p>
               <p>
-                <strong>Phone Number:</strong> {phoneNumber}
+                <strong>Phone Number:</strong> {restaurant.phone_number}
               </p>
             </Card.Body>
           </Card>
+
+          {submitStatus && <p>{submitStatus}</p>}
 
           <Form onSubmit={handleSubmit} className="edit-restaurant-form">
             <Form.Group>
@@ -128,7 +143,7 @@ function EditRestaurant() {
             <br />
 
             <Form.Group>
-              <Form.Label>New Description: </Form.Label>
+              <Form.Label>New Description: </ Form.Label>
               <Form.Control
                 type="text"
                 value={description}
@@ -138,7 +153,7 @@ function EditRestaurant() {
             <br />
 
             <Form.Group>
-              <Form.Label>New Address: </Form.Label>
+              <Form.Label>New Address: </ Form.Label>
               <Form.Control
                 type="text"
                 value={address}
@@ -148,7 +163,7 @@ function EditRestaurant() {
             <br />
 
             <Form.Group>
-              <Form.Label>New Phone Number: </Form.Label>
+              <Form.Label>New Phone Number: </ Form.Label>
               <Form.Control
                 type="text"
                 value={phoneNumber}

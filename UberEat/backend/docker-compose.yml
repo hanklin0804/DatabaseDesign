@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: 'food_dasher'
       MYSQL_USER: 'hanklin'
       MYSQL_PASSWORD: 'hanklin'
-      MYSQL_ROOT_PASSWORD: 'hanklin'
+      MYSQL_ROOT_PASSWORD: 'mitlab123456'
     ports:
       - '33336:3306'
   phpmyadmin:

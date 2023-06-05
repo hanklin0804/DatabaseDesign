@@ -1,3 +1,4 @@
+/* frontend/src/components/UserNavbar/UserNavbar.css */
 .navbar {
     display: flex;
     flex-direction: row;
@@ -30,4 +31,12 @@
 
 .nav-link:hover {
     color: #cccccc;
+}
+
+.user-greeting {
+    color: white;
+}
+
+.user-greeting:hover {
+    color: white;
 }
