@@ -1,104 +1,125 @@
-import React, { useState } from "react";
+// RestaurantOrders.js
+import React, { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import "./RestaurantOrders.css";
 import RestautantNavbar from "../RestautantNavbar/RestautantNavbar";
 
+import { useUser } from "../UserProvider/UserProvider";
+
+import * as restaurantAPI from "../../API/restaurant";
+import * as orderAPI from "../../API/order";
+
 function RestaurantOrders() {
-  const [orders, setOrders] = useState([
-    {
-      orderNumber: "12345678",
-      orderTime: "10:30 AM",
-      estimatedDelivery: "Not yet available",
-      totalAmount: "$45.0",
-      customer: "John Doe",
-      contact: "123-456-7890",
-      status: "Order received",
-      address: "123 Main St, City, ST, ZIP",
-      items: [
-        { name: "Burger", quantity: 2 },
-        { name: "Fries", quantity: 1 },
-      ],
-    },
-    // Add more orders here...
-  ]);
+  const user = useUser();
+  const [restaurantOrders, setResturantOrders] = useState(null);
 
-  const handleStatusChange = (status, index) => {
-    let newArray = [...orders];
+  const handleStatusChange = async (status, index) => {
+    let newArray = [...restaurantOrders];
     newArray[index].status = status;
-    let d = new Date();
-    d.setHours(d.getHours() + 1);
-    newArray[index].estimatedDelivery = d.toLocaleTimeString();
-    setOrders(newArray);
+    const res = await orderAPI.putOrder(newArray[index].uuid, newArray[index]);
+    console.log(res);
+    // let d = new Date();
+    // d.setHours(d.getHours() + 1);
+    // newArray[index].estimatedDelivery = d.toLocaleTimeString();
+    setResturantOrders(newArray);
   };
 
-  const handleDelivery = (index) => {
-    let newArray = [...orders];
+  const handleDelivery = async (index) => {
+    let newArray = [...restaurantOrders];
     newArray[index].status = "Out for delivery";
-    setOrders(newArray);
+    const res = await orderAPI.putOrder(newArray[index].uuid, newArray[index]);
+    console.log(res);
+    setResturantOrders(newArray);
   };
 
-  return (
-    <div>
-      <RestautantNavbar />
-      <div className="RestaurantOrders-background">
-        <Container className="orders-container">
-          <h2 className="orders-title">Orders</h2>
-          <div className="table-container">
-            <Table bordered hover className="orders-table">
-              <thead>
-                <tr>
-                  <th>Order Number</th>
-                  <th>Order Time</th>
-                  <th>Estimated Delivery</th>
-                  <th>Total Amount</th>
-                  <th>Customer</th>
-                  <th>Contact</th>
-                  <th>Delivery Address</th>
-                  <th>Items</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order, index) => (
-                  <tr key={index}>
-                    <td>{order.orderNumber}</td>
-                    <td>{order.orderTime}</td>
-                    <td>{order.estimatedDelivery}</td>
-                    <td>{order.totalAmount}</td>
-                    <td>{order.customer}</td>
-                    <td>{order.contact}</td>
-                    <td>{order.address}</td>
-                    <td>
-                      {order.items.map((item, i) => (
-                        <p key={i}>
-                          {item.quantity} x {item.name}
-                        </p>
-                      ))}
-                    </td>
-                    <td>
-                      {order.status === "Order received" && (
-                        <Button onClick={() => handleStatusChange("Preparing", index)}>
-                          Accept Order
-                        </Button>
-                      )}
-                      {order.status === "Preparing" && (
-                        <Button onClick={() => handleDelivery(index)}>
-                          Out for delivery
-                        </Button>
-                      )}
-                      {order.status ==="Out for delivery" && <span>Out for delivery</span>}
-                      {order.status === "Delivered" && <span>Order Delivered</span>}
-                    </td>
+  const fetchOrders = async (user) => {
+    const restaurants = await restaurantAPI.getRestauarnt();
+    const orders = await orderAPI.getOrder();
+
+    const restaurant = restaurants.data.find(
+      (restaurant) => restaurant.user.uuid === user.uuid
+    );
+
+    const restaurantOrders = orders.data.filter(
+      (order) => order.restaurant.uuid === restaurant.uuid
+    );
+    setResturantOrders(restaurantOrders);
+  };
+
+  useEffect(() => {
+    fetchOrders(user);
+  }, [user]);
+
+  if (!restaurantOrders) return <div>Loading...</div>;
+  else
+    return (
+      <div>
+        <RestautantNavbar />
+
+        <div className="RestaurantOrders-background">
+          <Container className="orders-container">
+            <h2 className="orders-title">Orders</h2>
+            <div className="table-container">
+              <Table bordered hover className="orders-table">
+                <thead>
+                  <tr>
+                    <th>Order UUID</th>
+                    <th>Order Time</th>
+                    <th>Estimated Delivery</th>
+                    <th>Total Amount</th>
+                    <th>Customer</th>
+                    <th>Contact</th>
+                    <th>Delivery Address</th>
+                    <th>Items</th>
+                    <th>Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        </Container>
+                </thead>
+                <tbody>
+                  {restaurantOrders.map((order, index) => (
+                    <tr key={index}>
+                      <td>{order.uuid}</td>
+                      <td>{order.order_time}</td>
+                      <td>{order.delivery_time}</td>
+                      <td>{order.total_price}</td>
+                      <td>
+                        {order.user.first_name} {order.user.last_name}
+                      </td>
+                      <td>{order.user.email}</td>
+                      <td>{order.user.delivery_address}</td>
+                      <td>
+                        <p>Order Items...</p>
+                      </td>
+                      <td>
+                        {order.status === "Order received" && (
+                          <Button
+                            onClick={() =>
+                              handleStatusChange("Preparing", index)
+                            }
+                          >
+                            Accept Order
+                          </Button>
+                        )}
+                        {order.status === "Preparing" && (
+                          <Button onClick={() => handleDelivery(index)}>
+                            Out for delivery
+                          </Button>
+                        )}
+                        {order.status === "Out for delivery" && (
+                          <span>Out for delivery</span>
+                        )}
+                        {order.status === "Delivered" && (
+                          <span>Order Delivered</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          </Container>
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default RestaurantOrders;
-

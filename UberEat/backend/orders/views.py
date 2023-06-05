@@ -2,7 +2,8 @@
 from rest_framework import generics
 
 from .models import Order, OrderItem
-from .serializers import OrderSerializer, OrderCreateSerializer, OrderItemSerializer
+from .serializers import OrderSerializer, OrderCreateSerializer
+from .serializers import OrderItemSerializer, OrderItemCreateSerializer
 
 
 class OrderListView(generics.ListAPIView):
@@ -30,7 +31,7 @@ class OrderItemListView(generics.ListAPIView):
 
 class OrderItemCreateView(generics.CreateAPIView):
     queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
+    serializer_class = OrderItemCreateSerializer
 
 
 class OrderItemDetailedView(generics.RetrieveUpdateDestroyAPIView):

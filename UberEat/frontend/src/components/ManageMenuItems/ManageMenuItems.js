@@ -1,6 +1,7 @@
 // src/components/ManageMenu/ManageMenu.js
 import React, { useState, useEffect, useCallback } from "react";
 import { Container, Button, Card, Form, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 import "./ManageMenuItems.css";
 import RestautantNavbar from "../RestautantNavbar/RestautantNavbar";
@@ -11,6 +12,7 @@ import * as menuAPI from "../../API/menu";
 
 function ManageMenuItems() {
   const user = useUser();
+  const navigate = useNavigate();
 
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState({
@@ -21,7 +23,7 @@ function ManageMenuItems() {
   });
   const [editingIndex, setEditingIndex] = useState(null);
 
-  const fetchData = useCallback(async (user) => {
+  const fetchData = useCallback(async (user, navigate) => {
     const restaurants = await restaurantAPI.getRestauarnt();
     const menus = await menuAPI.getMenu();
 
@@ -34,7 +36,8 @@ function ManageMenuItems() {
     );
 
     if (!restaurant) {
-      window.location.reload();
+      alert("You have no restaurant now!");
+      navigate("/edit-restaurant");
       return;
     }
 
@@ -50,7 +53,7 @@ function ManageMenuItems() {
   const addItem = useCallback(
     async (event) => {
       event.preventDefault();
-      const restaurantUUID = await fetchData(user);
+      const restaurantUUID = await fetchData(user, navigate);
       const updatedItem = { ...newItem, restaurant_uuid: restaurantUUID };
       setItems((prevItems) => [...prevItems, updatedItem]);
       await menuAPI.postMenu(updatedItem);
@@ -63,7 +66,7 @@ function ManageMenuItems() {
         price: 0,
       });
     },
-    [fetchData, user, newItem]
+    [fetchData, user, newItem, navigate]
   );
 
   const deleteItem = useCallback(async (index, uuid) => {
@@ -86,8 +89,8 @@ function ManageMenuItems() {
   };
 
   useEffect(() => {
-    fetchData(user);
-  }, [fetchData, user]);
+    fetchData(user, navigate);
+  }, [fetchData, user, navigate]);
 
   return (
     <div>
@@ -130,7 +133,7 @@ function ManageMenuItems() {
                             <Form.Control
                               type="number"
                               min={1}
-                              max={1000000}
+                              max={99999}
                               value={item.price}
                               onChange={(e) => {
                                 const newItems = [...items];
@@ -204,7 +207,7 @@ function ManageMenuItems() {
                 <Form.Control
                   type="number"
                   min={1}
-                  max={1000000}
+                  max={99999}
                   value={newItem.price}
                   onChange={(e) =>
                     setNewItem({ ...newItem, price: e.target.value })

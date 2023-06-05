@@ -5,7 +5,7 @@ from .models import Order, OrderItem
 from users.serializers import UserSerializer
 from restaurants.serializers import MenuSerializer, RestaurantSerializer
 
-from restaurants.models import Restaurant
+from restaurants.models import Restaurant, Menu
 from users.models import User
 
 
@@ -34,8 +34,13 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         user = User.objects.get(uuid=user_uuid)
         return Order.objects.create(user=user, restaurant=restaurant, **validated_data)
 
+    def update(self, instance, validated_data):
+        instance.status = validated_data.get('status', instance.status)
+        instance.save()
+        return instance
 
 # Order Item
+
 
 class OrderItemSerializer(serializers.ModelSerializer):
     order = OrderSerializer()
@@ -44,3 +49,19 @@ class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = '__all__'
+
+
+class OrderItemCreateSerializer(serializers.ModelSerializer):
+    order_uuid = serializers.UUIDField(write_only=True)
+    item_uuid = serializers.UUIDField(write_only=True)
+
+    class Meta:
+        model = Order
+        fields = ["order_uuid", "item_uuid", "quantity"]
+
+    def create(self, validated_data):
+        order_uuid = validated_data.pop('order_uuid')
+        item_uuid = validated_data.pop('item_uuid')
+        order = Order.objects.get(uuid=order_uuid)
+        item = Menu.objects.get(uuid=item_uuid)
+        return OrderItem.objects.create(order=order, item=item, **validated_data)
