@@ -1,8 +1,17 @@
-.restaurant-detail-container {
-    text-align: center;
+.restaurant-detail-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 50px;
+    min-height: 100vh;
     background-image: url("../../assets/user_background.jpg");
     background-color: rgba(0, 0, 0, 0.5);
     background-size: cover;
+}
+
+.restaurant-detail-container {
+    text-align: center;
     padding: 40px;
 }
 

@@ -5,13 +5,11 @@ import "./UserRestaurantDetail.css";
 import UserNavbar from "../UserNavbar/UserNavbar";
 
 import * as menuAPI from "../../API/menu";
-import * as reviewAPI from "../../API/review";
 
 function UserRestaurantDetail() {
   const location = useLocation();
   const restaurant = location.state.restaurant;
   const [menuData, setMenuData] = useState([]);
-  const [reviews, setReviews] = useState([]);
 
   const addToCart = (dish) => {
     const storedCartItems = localStorage.getItem("cartItems");
@@ -59,12 +57,6 @@ function UserRestaurantDetail() {
         (menu) => menu.restaurant.id === restaurant.id
       );
       setMenuData(filteredMenu);
-
-      const response = await reviewAPI.getReview();
-      const reviews = response.data.filter(
-        (review) => review.restaurant.user.uuid === restaurant.user.uuid
-      );
-      setReviews(reviews);
     };
     fetchData();
   }, [restaurant]);
@@ -72,12 +64,7 @@ function UserRestaurantDetail() {
   return (
     <div>
       <UserNavbar />
-      {reviews.map((review) => (
-        <>
-          <h6>{review.rating}</h6>
-          <h6>{review.review}</h6>
-        </>
-      ))}
+      <div className="restaurant-detail-page">
       <Container className="restaurant-detail-container">
         <h2 className="title">{restaurant.name}</h2>
         <p className="description">{restaurant.description}</p>
@@ -104,6 +91,7 @@ function UserRestaurantDetail() {
           ))}
         </Row>
       </Container>
+      </div>
     </div>
   );
 }
