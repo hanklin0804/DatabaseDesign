@@ -54,12 +54,17 @@ class Command(BaseCommand):
                 order = Order.objects.create(
                     user=user,
                     restaurant=restaurant,
-                    order_time=timezone.now(),  # set order time to current time
-                    delivery_time=delivery_time_minutes,
+                    order_time=timezone.now().timestamp(),  # convert current time to timestamp
+                    delivery_time=delivery_time_minutes*60,  # convert minutes to seconds
                     delivery_address=fake.address(),
                     total_price=0,
-                    status=randint(0, 3),  # assuming status can be 0 to 3
-                    finished=fake.boolean()  # randomly determine if order is finished
+                    # assuming status can be one of these four
+                    status=fake.random_element(
+                        elements=["Preparing", "Cooking", "Delivering", "Delivered"]),
+                    finished=fake.boolean(),  # randomly determine if order is finished
+                    # assuming these are the possible payment methods
+                    payment_method=fake.random_element(
+                        elements=["Credit Card", "Debit Card", "Cash", "Online Payment"])
                 )
 
                 menu_items = Menu.objects.filter(restaurant=restaurant)

@@ -12,7 +12,7 @@ from .models import User
 COOKIE_EXPIRE_TIME = 3600
 
 
-class UserView(generics.CreateAPIView):
+class UserView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     permission_classes = [
         permissions.AllowAny  # Or just anon users, because anyone can register
@@ -37,8 +37,10 @@ class LoginView(generics.GenericAPIView):
         del user_data['password']
 
         for (key, value) in user_data.items():
+            safe_value = str(value)
             encoded_value = base64.b64encode(
-                str(value).encode('utf-8')).decode('utf-8')
+                safe_value.encode('utf-8')).decode('utf-8')
+
             response.set_cookie(key=key, value=encoded_value,
                                 max_age=COOKIE_EXPIRE_TIME)
 

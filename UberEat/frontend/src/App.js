@@ -17,7 +17,7 @@ import UserCheckout from "./components/UserCheckout/UserCheckout";
 import UserOrderConfirmation from "./components/UserOrderConfirmation/UserOrderConfirmation";
 import UserOrderHistory from "./components/UserOrderHistory/UserOrderHistory";
 import UserOrderStatus from "./components/UserOrderStatus/UserOrderStatus";
-// import UserRatingsAndReviews from "./components/UserRatingsAndReviews/UserRatingsAndReviews";
+import UserRatingsAndReviews from "./components/UserRatingsAndReviews/UserRatingsAndReviews";
 import UserRestaurantDetail from "./components/UserRestaurantDetail/UserRestaurantDetail";
 
 function App() {
@@ -37,16 +37,11 @@ function App() {
           <Route path="/user-cart" element={<UserCart />} />
           <Route path="/user-checkout" element={<UserCheckout />} />
           {/* <Route path="/user-menu-detail" element={<UserMenuDetail />} /> */}
-          <Route
-            path="/user-order-confirmation"
-            element={<UserOrderConfirmation />}
-          />
+          <Route path="/user-order-confirmation" element={<UserOrderConfirmation />} />
           <Route path="/user-order-history" element={<UserOrderHistory />} />
           <Route path="/user-order-status" element={<UserOrderStatus />} />
-          {/* <Route path="/user-ratings-and-reviews" element={<UserRatingsAndReviews />} /> */}
-          <Route
-            path="/user-restaurant-detail"
-            element={<UserRestaurantDetail />}
+          <Route path="/user-ratings-and-reviews" element={<UserRatingsAndReviews />} />
+          <Route path="/user-restaurant-detail" element={<UserRestaurantDetail />}
           />
         </Routes>
       </UserProvider>

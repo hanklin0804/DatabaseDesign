@@ -39,6 +39,11 @@ function Cart() {
     );
   };
 
+  const checkout = () => {
+    localStorage.setItem("cartTotal", parseNumber(getTotalPrice()));
+    navigate("/user-checkout");
+  };
+
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (storedCartItems) {
@@ -126,7 +131,7 @@ function Cart() {
                 Total: {parseNumber(getTotalPrice())}
               </h4>
               <Button
-                onClick={() => navigate("/user-checkout")}
+                onClick={() => checkout()}
                 className="user-cart-checkout-button"
                 variant="success"
                 size="lg"

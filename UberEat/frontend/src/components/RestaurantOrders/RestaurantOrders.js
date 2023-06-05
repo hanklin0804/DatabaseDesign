@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Container, Table, Button } from "react-bootstrap";
 import "./RestaurantOrders.css";
 import RestautantNavbar from "../RestautantNavbar/RestautantNavbar";
 
@@ -25,17 +25,15 @@ function RestaurantOrders() {
   const handleStatusChange = (status, index) => {
     let newArray = [...orders];
     newArray[index].status = status;
-    if (status === "Preparing") {
-      let d = new Date();
-      d.setHours(d.getHours() + 1);
-      newArray[index].estimatedDelivery = d.toLocaleTimeString();
-    }
+    let d = new Date();
+    d.setHours(d.getHours() + 1);
+    newArray[index].estimatedDelivery = d.toLocaleTimeString();
     setOrders(newArray);
   };
 
   const handleDelivery = (index) => {
     let newArray = [...orders];
-    newArray[index].status = "Delivery in progress";
+    newArray[index].status = "Out for delivery";
     setOrders(newArray);
   };
 
@@ -79,19 +77,17 @@ function RestaurantOrders() {
                     </td>
                     <td>
                       {order.status === "Order received" && (
-                        <span>Order preparing</span>
+                        <Button onClick={() => handleStatusChange("Preparing", index)}>
+                          Accept Order
+                        </Button>
                       )}
                       {order.status === "Preparing" && (
-                        <button onClick={() => handleDelivery(index)}>
-                          Delivery in Progress
-                        </button>
+                        <Button onClick={() => handleDelivery(index)}>
+                          Out for delivery
+                        </Button>
                       )}
-                      {order.status === "Delivery in progress" && (
-                        <span>Delivery in Progress</span>
-                      )}
-                      {order.status === "Delivered" && (
-                        <span>Order Delivered</span>
-                      )}
+                      {order.status ==="Out for delivery" && <span>Out for delivery</span>}
+                      {order.status === "Delivered" && <span>Order Delivered</span>}
                     </td>
                   </tr>
                 ))}
@@ -100,10 +96,9 @@ function RestaurantOrders() {
           </div>
         </Container>
       </div>
-   
-
     </div>
   );
 }
 
 export default RestaurantOrders;
+

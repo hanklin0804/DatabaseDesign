@@ -2,13 +2,23 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./UserNavbar.css"; 
+import "./UserNavbar.css";
 
 import { useUser } from "../UserProvider/UserProvider";
+import { useCookies } from "react-cookie";
 
 function UserNavbar() {
   const user = useUser();
   const navigate = useNavigate();
+
+  const [cookies, removeCookie] = useCookies([]);
+  const Logout = () => {
+    Object.keys(cookies).forEach((cookieName) => {
+      removeCookie(cookieName);
+    });
+    localStorage.clear();
+    navigate("/");
+  };
 
   return (
     <Navbar bg="dark" variant="dark">
@@ -34,7 +44,7 @@ function UserNavbar() {
         </Nav.Link>
       </Nav>
       <Nav>
-        <Nav.Link onClick={() => navigate("/")} className="menu-items-link">
+        <Nav.Link onClick={() => Logout()} className="menu-items-link">
           Logout
         </Nav.Link>
       </Nav>

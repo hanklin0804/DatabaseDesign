@@ -11,12 +11,13 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     restaurant = models.ForeignKey(
         Restaurant, on_delete=models.CASCADE, blank=True)
-    order_time = models.DateTimeField(auto_now_add=True, blank=True)
-    delivery_time = models.IntegerField(blank=True, default=0)
+    order_time = models.BigIntegerField(blank=True)
+    delivery_time = models.BigIntegerField(blank=True, default=0)
     delivery_address = models.CharField(max_length=255, blank=True)
-    total_price = models.DecimalField(
-        blank=True, max_digits=7, decimal_places=2)
-    status = models.IntegerField(blank=True, default=0)
+    total_price = models.FloatField(
+        blank=True, default=0)
+    status = models.CharField(max_length=255, blank=True, default="Preparing")
+    payment_method = models.CharField(max_length=255, blank=True)
     finished = models.BooleanField(blank=True, default=False)
 
     class Meta:

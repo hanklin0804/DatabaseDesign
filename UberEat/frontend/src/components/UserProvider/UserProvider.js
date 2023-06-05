@@ -5,6 +5,16 @@ const UserContext = createContext(null);
 
 const decodeBase64Utf8 = (base64) => {
   try {
+    // Check if string is a valid base64 string
+    if (
+      typeof base64 !== "string" ||
+      !/^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$/g.test(
+        base64
+      )
+    ) {
+      throw new Error("Invalid base64 string");
+    }
+
     const binaryString = atob(base64);
     const len = binaryString.length;
     const bytes = new Uint8Array(len);
@@ -16,8 +26,8 @@ const decodeBase64Utf8 = (base64) => {
     const decoder = new TextDecoder("utf-8");
     return decoder.decode(bytes);
   } catch (error) {
-    // console.error("Error decoding base64 string", error);
-    return base64; // or return some default/fallback value
+    console.error("Error decoding base64 string", error);
+    return ""; // return empty string or some default/fallback value
   }
 };
 
@@ -38,12 +48,12 @@ export function UserProvider({ children }) {
   return (
     <UserContext.Provider
       value={{
-        uuid: decodeBase64Utf8(cookies.uuid) || "",
-        firstName: decodeBase64Utf8(cookies.first_name) || "",
-        lastName: decodeBase64Utf8(cookies.last_name) || "",
-        email: decodeBase64Utf8(cookies.email) || "",
-        phoneNumber: decodeBase64Utf8(cookies.phone_number) || "",
-        deliveryAddress: decodeBase64Utf8(cookies.delivery_address) || "",
+        uuid: decodeBase64Utf8(cookies.uuid || ""),
+        firstName: decodeBase64Utf8(cookies.first_name || ""),
+        lastName: decodeBase64Utf8(cookies.last_name || ""),
+        email: decodeBase64Utf8(cookies.email || ""),
+        phoneNumber: decodeBase64Utf8(cookies.phone_number || ""),
+        deliveryAddress: decodeBase64Utf8(cookies.delivery_address || ""),
       }}
     >
       {children}

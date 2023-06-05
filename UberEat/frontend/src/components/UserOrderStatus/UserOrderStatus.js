@@ -1,10 +1,12 @@
 // src/components/UserOrderStatus/UserOrderStatus.js
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import './UserOrderStatus.css';
+import { useNavigate } from "react-router-dom";
 import UserNavbar from '../UserNavbar/UserNavbar';
 
 function UserOrderStatus() {
+    const navigate = useNavigate();
     const [orders, setOrders] = useState([
         { orderNumber: "12345678", status: "Order received" },
         { orderNumber: "87654321", status: "Preparing" },
@@ -24,6 +26,12 @@ function UserOrderStatus() {
         return () => clearInterval(interval); // Clean up on component unmount
     }, [orders]);
 
+    const handleOrderCompletion = (index) => {
+        let newArray = [...orders];
+        newArray[index].status = "Delivered";
+        setOrders(newArray);
+    };
+
     return (
         <div>
             <UserNavbar />
@@ -37,8 +45,18 @@ function UserOrderStatus() {
                                     <Col xs={6}>
                                         <h4 className="order-number">Order Number: {order.orderNumber}</h4>
                                     </Col>
-                                    <Col xs={6}>
+                                    <Col xs={4}>
                                         <h4 className={`status-text status-text-${order.status.split(' ').join('-').toLowerCase()}`}>Status: {order.status}</h4>
+                                    </Col>
+                                    <Col xs={2} className="UserOrderStatus-buttonContainer">
+                                        {order.status === "Out for delivery" && (
+                                            <Button className="UserOrderStatus-button" onClick={() => {
+                                                handleOrderCompletion(index);
+                                                navigate("/user-ratings-and-reviews");
+                                                }}>
+                                            Complete Order
+                                            </Button>
+                                        )}
                                     </Col>
                                 </Row>
                             </Card.Body>

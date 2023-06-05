@@ -31,13 +31,21 @@ function UserRestaurantDetail() {
       localStorage.setItem("restaurantName", restaurant.name);
     }
 
-    updatedCartItems.push({
-      id: dish.id,
-      name: dish.name,
-      description: dish.description,
-      price: dish.price,
-      quantity: 1, // Set initial quantity to 1
-    });
+    // Check if the dish is already in the cart
+    const existingDish = updatedCartItems.find((item) => item.id === dish.id);
+    if (existingDish) {
+      // If it is, increase the quantity
+      existingDish.quantity += 1;
+    } else {
+      // Otherwise, add the dish to the cart with an initial quantity of 1
+      updatedCartItems.push({
+        id: dish.id,
+        name: dish.name,
+        description: dish.description,
+        price: dish.price,
+        quantity: 1, // Set initial quantity to 1
+      });
+    }
 
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };

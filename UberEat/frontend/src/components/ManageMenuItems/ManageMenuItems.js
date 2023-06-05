@@ -129,6 +129,8 @@ function ManageMenuItems() {
                           <Form.Group controlId={`formItemPrice${index}`}>
                             <Form.Control
                               type="number"
+                              min={1}
+                              max={1000000}
                               value={item.price}
                               onChange={(e) => {
                                 const newItems = [...items];
@@ -201,6 +203,8 @@ function ManageMenuItems() {
                 <br />
                 <Form.Control
                   type="number"
+                  min={1}
+                  max={1000000}
                   value={newItem.price}
                   onChange={(e) =>
                     setNewItem({ ...newItem, price: e.target.value })

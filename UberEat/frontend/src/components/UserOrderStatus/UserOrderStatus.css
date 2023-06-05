@@ -84,3 +84,38 @@
 .status-text-delivered {
     color: #dc3545;
 }
+
+.UserOrderStatus-buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.UserOrderStatus-button {
+    font-size: 1em;
+    font-weight:600;
+    background-color: #7fdf9c;
+    color: #3b3b3b;
+    border: #3caa5db4;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .UserOrderStatus-button:hover {
+    background-color: #44be69b4;
+  }
+  
+  .UserOrderStatus-button:active {
+    background-color: #cccccc;
+  }
+  .custom-modal {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+}
+
+.custom-modal-body {
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+    border-radius: 20px;
+}

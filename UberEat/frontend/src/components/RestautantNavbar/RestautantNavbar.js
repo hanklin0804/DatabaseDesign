@@ -14,8 +14,9 @@ function RestautantNavbar() {
 
   const Logout = () => {
     Object.keys(cookies).forEach((cookieName) => {
-      removeCookie(cookieName, { path: "/" });
+      removeCookie(cookieName);
     });
+    localStorage.clear();
     navigate("/");
   };
 
