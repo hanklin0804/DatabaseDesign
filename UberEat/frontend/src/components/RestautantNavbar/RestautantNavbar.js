@@ -15,7 +15,7 @@ function RestautantNavbar() {
     Object.keys(cookies).forEach((cookieName) => {
       removeCookie(cookieName, { path: "/" });
     });
-    // navigate("/");
+    navigate("/");
   };
 
   return (
