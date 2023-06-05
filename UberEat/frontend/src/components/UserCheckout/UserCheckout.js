@@ -8,7 +8,7 @@ import UserNavbar from "../UserNavbar/UserNavbar";
 import { useUser } from "../UserProvider/UserProvider";
 
 import * as orderAPI from "../../API/order";
-import * as orderItemAPI from "../../API/order_item";
+// import * as orderItemAPI from "../../API/order_item";
 
 const MAX_DELIVERY_TIME = 3600;
 const MIN_DELIVERY_TIME = 600;
@@ -17,11 +17,19 @@ function UserCheckout() {
   const user = useUser();
   const navigate = useNavigate();
 
-  const cartItem = localStorage.getItem("cartItem");
+  //   const cartItem = localStorage.getItem("cartItem");
   const totalPrice = localStorage.getItem("cartTotal");
   const restaurantUUID = localStorage.getItem("restaurantUUID");
 
   const purchase = async (event) => {
+    // const cartItemData = JSON.parse(cartItem);
+    // cartItemData.forEach(async(cartItem) => {
+    //     const data = {
+    //         order_uuid :
+    //     }
+    //     const res = await orderItemAPI.postOrderItem()
+    // })
+
     event.preventDefault();
     localStorage.setItem("paymentMethod", "Credit Card");
     const paymentMethod = localStorage.getItem("paymentMethod");

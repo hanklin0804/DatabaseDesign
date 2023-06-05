@@ -36,6 +36,7 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.status = validated_data.get('status', instance.status)
+        instance.finished = validated_data.get('finished', instance.finished)
         instance.save()
         return instance
 

@@ -17,7 +17,9 @@ function UserOrderStatus() {
 
   const fetchOrders = async (user) => {
     const res = await orderAPI.getOrder();
-    const userOrder = res.data.filter((order) => order.user.uuid === user.uuid);
+    const userOrder = res.data.filter(
+      (order) => order.user.uuid === user.uuid && order.finished === false
+    );
     setOrders(userOrder);
   };
 
@@ -25,10 +27,15 @@ function UserOrderStatus() {
     fetchOrders(user);
   }, [user]);
 
-  const handleOrderCompletion = (index) => {
+  const handleOrderCompletion = async (index) => {
     let newArray = [...orders];
     newArray[index].status = "Delivered";
-    setOrders(newArray);
+    newArray[index].finished = true;
+    const data = newArray[index];
+    data.restaurant_uuid = newArray[index].restaurant.uuid;
+    data.user_uuid = user.uuid;
+    await orderAPI.putOrder(newArray[index].uuid, data);
+    navigate("/user-ratings-and-reviews");
   };
 
   return (
@@ -73,10 +80,7 @@ function UserOrderStatus() {
                     {order.status === "Out for delivery" && (
                       <Button
                         className="UserOrderStatus-button"
-                        onClick={() => {
-                          handleOrderCompletion(index);
-                          navigate("/user-ratings-and-reviews");
-                        }}
+                        onClick={() => handleOrderCompletion(index)}
                       >
                         Complete Order
                       </Button>

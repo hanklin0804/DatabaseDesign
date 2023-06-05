@@ -11,16 +11,13 @@ import * as orderAPI from "../../API/order";
 
 function RestaurantOrders() {
   const user = useUser();
+  const [restaurant, setRestaurant] = useState({});
   const [restaurantOrders, setResturantOrders] = useState(null);
 
   const handleStatusChange = async (status, index) => {
     let newArray = [...restaurantOrders];
     newArray[index].status = status;
-    const res = await orderAPI.putOrder(newArray[index].uuid, newArray[index]);
-    console.log(res);
-    // let d = new Date();
-    // d.setHours(d.getHours() + 1);
-    // newArray[index].estimatedDelivery = d.toLocaleTimeString();
+    await orderAPI.putOrder(newArray[index].uuid, newArray[index]);
     setResturantOrders(newArray);
   };
 
@@ -28,10 +25,8 @@ function RestaurantOrders() {
     let newArray = [...restaurantOrders];
     newArray[index].status = "Out for delivery";
     const data = newArray[index];
-    delete data.restaurant.logo;
-    delete data.restaurant.name;
-    delete data.restaurant.user;
-    delete data.user.email;
+    data.user_uuid = user.uuid;
+    data.restaurant_uuid = restaurant.uuid;
     const res = await orderAPI.putOrder(newArray[index].uuid, data);
     console.log(res);
     setResturantOrders(newArray);
@@ -48,6 +43,7 @@ function RestaurantOrders() {
     const restaurantOrders = orders.data.filter(
       (order) => order.restaurant.uuid === restaurant.uuid
     );
+    setRestaurant(restaurant);
     setResturantOrders(restaurantOrders);
   };
 

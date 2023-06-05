@@ -18,7 +18,7 @@ class OrderCreateView(generics.CreateAPIView):
 
 class OrderDetailedView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+    serializer_class = OrderCreateSerializer
     lookup_field = 'uuid'
 
 
