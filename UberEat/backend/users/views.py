@@ -34,6 +34,7 @@ class LoginView(generics.GenericAPIView):
         user_data = dict(UserSerializer(
             user, context=self.get_serializer_context()).data)
         del user_data['id']
+        del user_data['password']
 
         for (key, value) in user_data.items():
             encoded_value = base64.b64encode(

@@ -6,8 +6,6 @@ import * as restuarntAPI from "../../API/restaurant";
 import "./HomeUser.css";
 import UserNavbar from "../UserNavbar/UserNavbar";
 
-import { useUser } from "../UserProvider/UserProvider";
-
 function RestaurantCard({ restaurant }) {
   const navigate = useNavigate();
 
@@ -43,9 +41,6 @@ function RestaurantCard({ restaurant }) {
 }
 
 function HomeUser() {
-  const user = useUser();
-
-  console.log(user);
   const [searchTerm, setSearchTerm] = useState("");
   const [restaurantData, setRestaurantData] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);

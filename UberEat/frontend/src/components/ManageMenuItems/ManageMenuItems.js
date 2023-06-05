@@ -24,12 +24,26 @@ function ManageMenuItems() {
   const fetchData = useCallback(async (user) => {
     const restaurants = await restaurantAPI.getRestauarnt();
     const menus = await menuAPI.getMenu();
+
+    if (!restaurants.data || !menus.data) {
+      return;
+    }
+
     const restaurant = restaurants.data.find(
-      (restaurant) => restaurant.user.uuid === user.uuid
+      (restaurant) => restaurant.user && restaurant.user.uuid === user.uuid
     );
-    setItems(
-      menus.data.filter((menu) => menu.restaurant.uuid === restaurant.uuid)
+
+    if (!restaurant) {
+      window.location.reload();
+      return;
+    }
+
+    const filteredItems = menus.data.filter(
+      (menu) => menu.restaurant && menu.restaurant.uuid === restaurant.uuid
     );
+
+    setItems(filteredItems);
+
     return restaurant.uuid;
   }, []);
 
@@ -62,11 +76,13 @@ function ManageMenuItems() {
   }, []);
 
   const saveItem = async (index) => {
-    setEditingIndex(null);
     const newItems = [...items];
-    newItems[index].restaurant_uuid = newItems[index].restaurant.uuid;
-    delete newItems[index].restaurant;
+    if (newItems[index].restaurant) {
+      newItems[index].restaurant_uuid = newItems[index].restaurant.uuid;
+      delete newItems[index].restaurant;
+    }
     await menuAPI.putMenu(newItems[index].uuid, newItems[index]);
+    setEditingIndex(null);
   };
 
   useEffect(() => {

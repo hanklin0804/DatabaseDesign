@@ -9,10 +9,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-    # def create(self, validated_data):
-    #     user = User.objects.create(**validated_data)
-    #     return user
-
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField()

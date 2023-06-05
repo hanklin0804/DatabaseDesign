@@ -38,12 +38,12 @@ export function UserProvider({ children }) {
   return (
     <UserContext.Provider
       value={{
-        uuid: decodeBase64Utf8(cookies.uuid),
-        firstName: decodeBase64Utf8(cookies.first_name),
-        lastName: decodeBase64Utf8(cookies.last_name),
-        email: decodeBase64Utf8(cookies.email),
-        phoneNumber: decodeBase64Utf8(cookies.phone_number),
-        deliveryAddress: decodeBase64Utf8(cookies.delivery_address),
+        uuid: decodeBase64Utf8(cookies.uuid) || "",
+        firstName: decodeBase64Utf8(cookies.first_name) || "",
+        lastName: decodeBase64Utf8(cookies.last_name) || "",
+        email: decodeBase64Utf8(cookies.email) || "",
+        phoneNumber: decodeBase64Utf8(cookies.phone_number) || "",
+        deliveryAddress: decodeBase64Utf8(cookies.delivery_address) || "",
       }}
     >
       {children}

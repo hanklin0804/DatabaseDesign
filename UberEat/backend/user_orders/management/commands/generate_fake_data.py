@@ -50,14 +50,16 @@ class Command(BaseCommand):
         for user in users:
             for _ in range(2):  # Creating 2 orders for each user
                 restaurant = fake.random_element(elements=restaurants)
-                delivery_time = fake.date_time_between(
-                    start_date='now', end_date='+1h', tzinfo=timezone.get_current_timezone())
+                delivery_time_minutes = randint(1, 60)  # 1 to 60 minutes
                 order = Order.objects.create(
                     user=user,
                     restaurant=restaurant,
-                    delivery_time=delivery_time,
+                    order_time=timezone.now(),  # set order time to current time
+                    delivery_time=delivery_time_minutes,
                     delivery_address=fake.address(),
-                    total_price=0
+                    total_price=0,
+                    status=randint(0, 3),  # assuming status can be 0 to 3
+                    finished=fake.boolean()  # randomly determine if order is finished
                 )
 
                 menu_items = Menu.objects.filter(restaurant=restaurant)

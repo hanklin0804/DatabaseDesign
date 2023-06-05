@@ -9,12 +9,13 @@ function RestautantNavbar() {
   const navigate = useNavigate();
 
   const [cookies, removeCookie] = useCookies([]);
+  console.log(cookies);
 
   const Logout = () => {
     Object.keys(cookies).forEach((cookieName) => {
-      removeCookie(cookieName);
+      removeCookie(cookieName, { path: "/" });
     });
-    navigate("/");
+    // navigate("/");
   };
 
   return (
