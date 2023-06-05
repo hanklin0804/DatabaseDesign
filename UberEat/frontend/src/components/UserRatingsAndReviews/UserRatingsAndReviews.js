@@ -30,13 +30,13 @@ function UserRatingsAndReviews() {
     const res = await reviewAPI.postReview(data);
     if (res.status === 201) alert("Comment succeessfully!");
     else alert("Comment failed!");
-    navigate("/home-user");
+    navigate("/user-restaurant-show-reviews");
   };
 
   const fetchData = async (user) => {
     const restaurants = await restaurantAPI.getRestauarnt();
     const restaurant = restaurants.data.find(
-      (restaurant) => (restaurant.user.uuid = user.uuid)
+      (restaurant) => restaurant.user.uuid === user.uuid
     );
     setRestaurant(restaurant);
   };
