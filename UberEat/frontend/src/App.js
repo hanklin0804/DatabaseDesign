@@ -7,6 +7,7 @@ import HomeUser from "./components/HomeUser/HomeUser";
 import HomeRestaurant from "./components/HomeRestaurant/HomeRestaurant";
 import EditRestaurant from "./components/EditRestaurant/EditRestaurant";
 import ManageMenuItems from "./components/ManageMenuItems/ManageMenuItems";
+import RestaurantOrders from "./components/RestaurantOrders/RestaurantOrders"; 
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import RoleSelection from "./components/RoleSelection/RoleSelection";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/home-restaurant" element={<HomeRestaurant />} />
           <Route path="/edit-restaurant" element={<EditRestaurant />} />
           <Route path="/manage-menu-items" element={<ManageMenuItems />} />
+          <Route path="/restaurant-orders" element={<RestaurantOrders />} />
           <Route path="/role-selector" element={<RoleSelection />} />
           <Route path="/user-cart" element={<UserCart />} />
           <Route path="/user-checkout" element={<UserCheckout />} />

@@ -1,4 +1,3 @@
-/* src/components/UserRestaurantDetail/UserRestaurantDetail.css */
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
@@ -10,12 +9,37 @@ import * as menuAPI from "../../API/menu";
 function UserRestaurantDetail() {
   const location = useLocation();
   const restaurant = location.state.restaurant;
-  const [cartItems, setCartItems] = useState([]);
   const [menuData, setMenuData] = useState([]);
 
   const addToCart = (dish) => {
-    setCartItems([...cartItems, dish]);
-    localStorage.setItem("cartItems", JSON.stringify([...cartItems, dish]));
+    const storedCartItems = localStorage.getItem("cartItems");
+    const storedRestaurantUUID = localStorage.getItem("restaurantUUID");
+    const storedRestaurantName = localStorage.getItem("restaurantName");
+
+    let updatedCartItems = [];
+    if (storedCartItems) {
+      updatedCartItems = JSON.parse(storedCartItems);
+    }
+
+    if (storedRestaurantUUID !== restaurant.uuid) {
+      // Clear cart items if the restaurant has changed
+      updatedCartItems = [];
+      localStorage.setItem("restaurantUUID", restaurant.uuid);
+      localStorage.setItem("restaurantName", restaurant.name);
+    } else if (storedRestaurantName !== restaurant.name) {
+      // Update restaurant name if it has changed
+      localStorage.setItem("restaurantName", restaurant.name);
+    }
+
+    updatedCartItems.push({
+      id: dish.id,
+      name: dish.name,
+      description: dish.description,
+      price: dish.price,
+      quantity: 1, // Set initial quantity to 1
+    });
+
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
   useEffect(() => {
