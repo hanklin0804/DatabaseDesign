@@ -1,17 +1,23 @@
-- # Database Final Project - Food Dasher
+- # Database Design Final Project - Food Dasher
 
   Food Dasher is a database design final project focused on food ordering and delivery operations. It showcases a comprehensive database system with entities such as restaurants, menus, customers, orders, and delivery drivers. The project incorporates efficient data models, relationships, and data integrity constraints. With features like menu management, order placement, and delivery tracking, Food Dasher demonstrates our expertise in designing a scalable and secure database system for a seamless food delivery experience.
+
+---
 
 - ## Goal
 
   The main goal of Food Dasher is to provide a user-friendly platform for customers to easily order food from various restaurants and track the delivery status. Additionally, it aims to streamline restaurant operations by offering menu management tools and efficient order processing capabilities. The project aims to demonstrate the effective use of database design principles to enhance the overall food ordering and delivery experience.
 
+---
+
 - ## Developer
 
   - Backend Development
-    - Antony Wang
+    - Antony Wang(AhJayzZ)
   - Frontend Development
-    - Hank Lin
+    - Hank Lin(hanklin0804)
+
+---
 
 - ## System Architeture
 
@@ -19,6 +25,7 @@
     - React
   - Backend Framework
     - Django
+    - djangorestframework
   - Database
     - MySQL
   - Develop Enviroment
@@ -26,6 +33,8 @@
     - OS: Ubuntu 22.04
     - Backend: Python 3.10.6
     - Frontend: Node 14.21.3
+
+---
 
 - ## How to run the project ?
 
@@ -51,7 +60,7 @@
     cp .env.sample .env
     vi .env
 
-    Change required: DB_PASSWORD,DB_HOST
+    Change required: DB_PASSWORD , DB_HOST , DB_PORT
     !!! DB_PASSWORD(.env) must same as MYSQL_PASSWORD(docker-compose.yml)!!!
     ```
 
@@ -61,10 +70,10 @@
     cp .env.sample .env
     vi .env
 
-    Change required: REACT_APP_HOST_IP、REACT_APP_API_PORT
+    Change required: REACT_APP_HOST_IP , REACT_APP_API_PORT
     ```
 
-  - ### Step 2. Run Docker Compose (DB、phpMyAdmin)
+  - ### Step 2. Run Docker Compose (MySQL、phpMyAdmin)
 
     ```bash=
     # Path : Food_Dasher/backend/
@@ -90,43 +99,47 @@
     npm start
     ```
 
+---
+
 - ## Impelementation
 
   - ### Part A. Member
     - #### Member - Register
-      ![](https://imgur.com/a/UGYMDaK)
+      ![Imgur](https://imgur.com/PfFeDPo.png)
     - #### Member - Login
-      ![](https://imgur.com/a/yYALGqE)
+      ![Imgur](https://imgur.com/LUQ7u5t.png)
     - #### Member - Role Selection
-      ![](https://imgur.com/a/82tTzQM)
+      ![Imgur](https://imgur.com/Rrg2Kic.png)
   - ### Part B. User
     - #### User - Restaurant Lobby
-      ![](https://imgur.com/a/6wxf6ZE)
+      ![Imgur](https://imgur.com/u8oLEW8.png)
     - #### User - Restaurant Menu
-      ![](https://imgur.com/a/S82RZMz)
+      ![Imgur](https://imgur.com/8uAuGqv.png)
     - #### User - Order Cart
-      ![](https://imgur.com/a/WUPfkKK)
+      ![Imgur](https://imgur.com/d6zAQEJ.png)
     - #### User - Order Checkout
-      ![](https://imgur.com/a/AZ49RRD)
+      ![Imgur](https://imgur.com/eh8vBBT.png)
     - #### User - Order Confirmation
-      ![](https://imgur.com/a/3eEdokI)
+      ![Imgur](https://imgur.com/HCywPhM.png)
     - #### User - Order Status
-      ![](https://imgur.com/a/cO4erUJ)
-    - #### User - History Order
-      ![](https://imgur.com/a/JD4pF1H)
+      ![Imgur](https://imgur.com/VK47zmr.png)
     - #### User - Order Compelete
-      ![](https://imgur.com/a/97WyCak)
+      ![Imgur](https://imgur.com/hDpNFMT.png)
+    - #### User - History Order
+      ![Imgur](https://imgur.com/zNGNaRl.png)
     - #### User - Review and Rating
-      ![](https://imgur.com/a/kkyQPzX)
+      ![Imgur](https://imgur.com/vNE41KH.png)
     - #### User - Review and Rating Overview
-      ![](https://imgur.com/a/OzBF7pP)
+      ![Imgur](https://imgur.com/zfJoxOB.png)
   - ### Part C. Restaurant
-    - Restaurant - Order
-      ![](https://imgur.com/a/amF2cPk)
-    - Restaurant - Information
-      ![](https://imgur.com/a/cbtU1kl)
-    - Restaurant - Menu
-      ![](https://imgur.com/a/98pgieN)
+    - #### Restaurant - Order
+      ![Imgur](https://imgur.com/l7rVITn.png)
+    - #### Restaurant - Information
+      ![Imgur](https://imgur.com/IKrLV1f.png)
+    - #### Restaurant - Menu
+      ![Imgur](https://imgur.com/32n7ma6.png)
+
+---
 
 - ## Q&A
 
