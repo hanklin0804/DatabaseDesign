@@ -94,39 +94,39 @@
 
   - ### Part A. Member
     - #### Member - Register
-      ![](https://hackmd.io/_uploads/Sksj0Y2U2.png)
+      ![](https://imgur.com/a/UGYMDaK)
     - #### Member - Login
-      ![](https://hackmd.io/_uploads/H1_Eyc2Uh.png)
+      ![](https://imgur.com/a/yYALGqE)
     - #### Member - Role Selection
-      ![](https://hackmd.io/_uploads/ByCUZqnLh.jpg)
+      ![](https://imgur.com/a/82tTzQM)
   - ### Part B. User
     - #### User - Restaurant Lobby
-      ![](https://hackmd.io/_uploads/BkmOZ538n.png)
+      ![](https://imgur.com/a/6wxf6ZE)
     - #### User - Restaurant Menu
-      ![](https://hackmd.io/_uploads/H1Q2bc3In.png)
+      ![](https://imgur.com/a/S82RZMz)
     - #### User - Order Cart
-      ![](https://hackmd.io/_uploads/HkzkG53Lh.png)
+      ![](https://imgur.com/a/WUPfkKK)
     - #### User - Order Checkout
-      ![](https://hackmd.io/_uploads/HJEzM9hLn.png)
+      ![](https://imgur.com/a/AZ49RRD)
     - #### User - Order Confirmation
-      ![](https://hackmd.io/_uploads/ryFEMqnI2.png)
+      ![](https://imgur.com/a/3eEdokI)
     - #### User - Order Status
-      ![](https://hackmd.io/_uploads/SymdzqhL3.png)
+      ![](https://imgur.com/a/cO4erUJ)
     - #### User - History Order
-      ![](https://hackmd.io/_uploads/Hk2tzcn8n.png)
+      ![](https://imgur.com/a/JD4pF1H)
     - #### User - Order Compelete
-      ![](https://hackmd.io/_uploads/ryZnGc3U3.png)
+      ![](https://imgur.com/a/97WyCak)
     - #### User - Review and Rating
-      ![](https://hackmd.io/_uploads/HkTCz9hUn.png)
+      ![](https://imgur.com/a/kkyQPzX)
     - #### User - Review and Rating Overview
-      ![](https://hackmd.io/_uploads/Hy7FQcnIh.png)
+      ![](https://imgur.com/a/OzBF7pP)
   - ### Part C. Restaurant
     - Restaurant - Order
-      ![](https://hackmd.io/_uploads/HkVMI5h82.png)
+      ![](https://imgur.com/a/amF2cPk)
     - Restaurant - Information
-      ![](https://hackmd.io/_uploads/ryZ8L5nL2.png)
+      ![](https://imgur.com/a/cbtU1kl)
     - Restaurant - Menu
-      ![](https://hackmd.io/_uploads/rJTKUcnI3.png)
+      ![](https://imgur.com/a/98pgieN)
 
 - ## Q&A
 
