@@ -7,6 +7,31 @@ import UserNavbar from "../UserNavbar/UserNavbar";
 import * as orderAPI from "../../API/order";
 import { useUser } from "../UserProvider/UserProvider";
 
+const getDeliveryTime = (time) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  return `${minutes} min ${seconds} sec`;
+};
+
+const getCurrentTime = (timestamp) => {
+  const now = new Date(Number(timestamp));
+  let year = now.getFullYear();
+  let month = now.getMonth() + 1;
+  let day = now.getDate();
+  let hour = now.getHours();
+  let minute = now.getMinutes();
+  let second = now.getSeconds();
+
+  if (month.toString().length === 1) month = "0" + month;
+  if (day.toString().length === 1) day = "0" + day;
+  if (hour.toString().length === 1) hour = "0" + hour;
+  if (minute.toString().length === 1) minute = "0" + minute;
+  if (second.toString().length === 1) second = "0" + second;
+  return (
+    year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second
+  );
+};
+
 function UserOrderHistory() {
   const user = useUser();
   const [historyOrder, setHistoryOrder] = useState([]);
@@ -37,14 +62,17 @@ function UserOrderHistory() {
                     <h4 className="restaurant-name">
                       Restaurant: {order.restaurant.name}
                     </h4>
-                    <h6 className="order-number">Order UUID: {order.uuid}</h6>
+                    <h6 className="total-price">Order UUID: {order.uuid}</h6>
                   </Col>
                   <Col xs={6}>
-                    <h6 className="payment-method">
+                    <h6 className="total-price">
                       Payment Method: {order.payment_method}
                     </h6>
-                    <h6 className="payment-method">
-                      Order Time: {order.order_time}
+                    <h6 className="total-price">
+                      Order Time: {getCurrentTime(order.order_time)}
+                    </h6>
+                    <h6 className="total-price">
+                      Delivery Time: {getDeliveryTime(order.delivery_time)}
                     </h6>
                     <h6 className="total-price">
                       Total Price: {order.total_price}
