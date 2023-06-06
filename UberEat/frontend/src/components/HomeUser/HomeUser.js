@@ -63,7 +63,7 @@ function HomeUser() {
   }, [searchTerm, restaurantData]);
 
   const restaurantsToShow =
-    filteredRestaurants.length > 0 ? filteredRestaurants : restaurantData;
+    searchTerm === "" ? restaurantData : filteredRestaurants;
 
   return (
     <div>

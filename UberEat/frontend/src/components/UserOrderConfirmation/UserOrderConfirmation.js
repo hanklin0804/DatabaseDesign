@@ -41,6 +41,11 @@ function UserOrderConfirmation() {
     );
   };
 
+  const goToHome = () => {
+    localStorage.clear()
+    navigate("/home-user");
+  }
+
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (storedCartItems) setOrderList(storedCartItems);
@@ -122,7 +127,7 @@ function UserOrderConfirmation() {
             <Col xs={6} className="Go-to-Home-button-container">
               <Button
                 variant="primary"
-                onClick={() => navigate("/home-user")}
+                onClick={() => goToHome()}
                 className="Go-to-Home-button"
               >
                 Go to Home

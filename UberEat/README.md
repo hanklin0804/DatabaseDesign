@@ -8,15 +8,24 @@
 
 - ## Developer
 
-  - Antony Wang
-  - Hank Lin
+  - Backend Development
+    - Antony Wang
+  - Frontend Development
+    - Hank Lin
 
 - ## System Architeture
 
+  - Frontend Framework
+    - React
   - Backend Framework
     - Django
   - Database
     - MySQL
+  - Develop Enviroment
+    - VM: GCP VM(4C/16G/80GB)
+    - OS: Ubuntu 22.04
+    - Backend: Python 3.10.6
+    - Frontend: Node 14.21.3
 
 - ## How to run the project ?
 
@@ -24,15 +33,13 @@
 
     ```bash=
     # requirement installation
-    # Path : DatabaseDesign/UberEat/backend
-
+    # Path : Food_Dasher/backend/
     pip install -r requirements.txt
     ```
 
     ```bash=
     # node module installation
-    # Path : DatabaseDesign/UberEat/frontend
-
+    # Path : Food_Dasher/frontend/
     npm install
     ```
 
@@ -40,9 +47,7 @@
 
     ```bash=
     # Backend setting
-    # Path : DatabaseDesign/UberEat/backend/
-
-    # Backend env setting
+    # Path : Food_Dasher/backend/
     cp .env.sample .env
     vi .env
 
@@ -52,21 +57,76 @@
 
     ```bash=
     # Frontend setting
-    # Path : DatabaseDesign/UberEat/frontend/
-
-    # Frontend env setting
+    # Path : Food_Dasher/frontend/
     cp .env.sample .env
     vi .env
+
+    Change required: REACT_APP_HOST_IP、REACT_APP_API_PORT
     ```
 
-  - ### Step 2. Run Docker-Compose
+  - ### Step 2. Run Docker Compose (DB、phpMyAdmin)
 
     ```bash=
-    # Path : DatabaseDesign/UberEat/backend/
-
+    # Path : Food_Dasher/backend/
     docker-compose build
     docker-compose up
     ```
+
+  - ### Step 3. Run Migration
+
+    ```bash=
+    # Path : Food_Dasher/backend/
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    ```
+
+  - ### Step 4. Run Backend and Frontend
+
+    ```bash=
+    # Path : Food_Dasher/backend/
+    python3 manage.py runserver 0.0.0.0:<backend port>
+
+    # Path : Food_Dasher/frontend/
+    npm start
+    ```
+
+- ## Impelementation
+
+  - ### Part A. Member
+    - #### Member - Register
+      ![](https://hackmd.io/_uploads/Sksj0Y2U2.png)
+    - #### Member - Login
+      ![](https://hackmd.io/_uploads/H1_Eyc2Uh.png)
+    - #### Member - Role Selection
+      ![](https://hackmd.io/_uploads/ByCUZqnLh.jpg)
+  - ### Part B. User
+    - #### User - Restaurant Lobby
+      ![](https://hackmd.io/_uploads/BkmOZ538n.png)
+    - #### User - Restaurant Menu
+      ![](https://hackmd.io/_uploads/H1Q2bc3In.png)
+    - #### User - Order Cart
+      ![](https://hackmd.io/_uploads/HkzkG53Lh.png)
+    - #### User - Order Checkout
+      ![](https://hackmd.io/_uploads/HJEzM9hLn.png)
+    - #### User - Order Confirmation
+      ![](https://hackmd.io/_uploads/ryFEMqnI2.png)
+    - #### User - Order Status
+      ![](https://hackmd.io/_uploads/SymdzqhL3.png)
+    - #### User - History Order
+      ![](https://hackmd.io/_uploads/Hk2tzcn8n.png)
+    - #### User - Order Compelete
+      ![](https://hackmd.io/_uploads/ryZnGc3U3.png)
+    - #### User - Review and Rating
+      ![](https://hackmd.io/_uploads/HkTCz9hUn.png)
+    - #### User - Review and Rating Overview
+      ![](https://hackmd.io/_uploads/Hy7FQcnIh.png)
+  - ### Part C. Restaurant
+    - Restaurant - Order
+      ![](https://hackmd.io/_uploads/HkVMI5h82.png)
+    - Restaurant - Information
+      ![](https://hackmd.io/_uploads/ryZ8L5nL2.png)
+    - Restaurant - Menu
+      ![](https://hackmd.io/_uploads/rJTKUcnI3.png)
 
 - ## Q&A
 
