@@ -16,6 +16,7 @@ function Login() {
     const res = await userAPI.login({ email: email, password: password });
     if (res.status === 200) {
       navigate("/role-selector");
+      window.location.reload();
     } else alert("Email or password error!");
   };
 
