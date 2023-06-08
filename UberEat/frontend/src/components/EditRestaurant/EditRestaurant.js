@@ -22,48 +22,30 @@ function EditRestaurant() {
   );
   const [address, setAddress] = useState("123 Example Street");
   const [phoneNumber, setPhoneNumber] = useState("123-456-7890");
-  // const [setLogo] = useState(null); // New state for the logo
   const [logoURL, setLogoURL] = useState(null); // New state for the logo URL
   const [logo, setLogo] = useState(null); // New state for the logo
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitStatus("Processing...");
-    let base64Logo = null;
-    if (logo) {
-      base64Logo = await toBase64(logo);
-    }
-    console.log(base64Logo);
-    if (restaurantExist) {
-      const res = await restaurantAPI.putRestauarnt(uuid, {
-        name: name,
-        user_uuid: user.uuid,
-        description: description,
-        address: address,
-        phone_number: phoneNumber,
-        // logo:logoURL
-      });
-      if (res.status === 200) {
-        setSubmitStatus("Restaurant informatiion updated!");
-      } else {
-        setSubmitStatus("Restaurant information update failed!");
-      }
-    } else {
-      const res = await restaurantAPI.postRestauarnt({
-        name: name,
-        user_uuid: user.uuid,
-        description: description,
-        address: address,
-        phone_number: phoneNumber,
-        // logo:logoURL
-      });
 
-      if (res.status === 201) {
-        setSubmitStatus("Restaurant created!");
-      } else {
-        setSubmitStatus("Restaurant created failed!");
-      }
-    }
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("user_uuid", user.uuid);
+    formData.append("description", description);
+    formData.append("address", address);
+    formData.append("phone_number", phoneNumber);
+    if (logo) formData.append("logo", logo);
+
+    let res;
+
+    if (restaurantExist)
+      res = await restaurantAPI.putRestauarnt(uuid, formData);
+    else res = await restaurantAPI.postRestauarnt(formData);
+
+    if (res.status === 200 || res.status === 201) setSubmitStatus("Success!");
+    else setSubmitStatus("Failed!");
+
     fetchData(user); // fetch data after submit
   };
 
@@ -74,13 +56,7 @@ function EditRestaurant() {
       setLogoURL(URL.createObjectURL(file));
     }
   };
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
+
   const fetchData = async (user) => {
     const restaurants = await restaurantAPI.getRestauarnt();
     const restaurant = restaurants.data.find(
@@ -130,9 +106,6 @@ function EditRestaurant() {
               </p>
               <p>
                 <strong>Phone Number:</strong> {restaurant.phone_number}
-              </p>
-              <p>
-                <strong>Ratings:</strong> {restaurant.rating}
               </p>
             </Card.Body>
           </Card>
