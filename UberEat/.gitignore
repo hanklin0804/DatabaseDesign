@@ -4,7 +4,7 @@ container.env
 nohup.out
 
 # logo folder
-logos/
+*/logos/logos/*
 
 # VS Code setting
 .vscode 
